@@ -35,6 +35,8 @@ main{min-width:0;padding:14px 16px 12px}
 .hero-copy{padding:18px 22px;position:relative;isolation:isolate;background:linear-gradient(115deg,var(--surface) 20%,transparent 100%)}
 .hero-copy:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,#e1efff99,#fff0 45%,#f4c84b22)}
 .welcome{font-family:Georgia,serif;font-style:italic;color:#bb7b00;font-size:clamp(1.2rem,2.4vw,2rem);margin:0 0 3px}
+.time-greeting{font-family:Georgia,serif;font-style:italic;color:var(--navy);font-size:clamp(.92rem,1.35vw,1.2rem);font-weight:800;margin:0 0 2px;letter-spacing:.15px}
+body.dark .time-greeting{color:#f2c95b}
 .hero-copy h2{font-size:clamp(2rem,4.2vw,3.5rem);line-height:.98;letter-spacing:-1.2px;margin:0;color:var(--navy);font-weight:950}
 body.dark .hero-copy h2{color:#eaf3ff}.hero-copy h2 span{color:#d99a00}.hero-copy .motto{font-size:.78rem;letter-spacing:2px;margin-top:12px}
 .hero-photo{min-height:205px;position:relative;background:#c6e2ff}
@@ -576,13 +578,18 @@ body.dark .enrol-updated{background:#122d50;color:#dbeaff;border-color:#29496f}
 .social-icons a:hover,.social-icons a:focus-visible{background:transparent!important;color:inherit!important}
 .social-icons a:focus-visible{outline:3px solid #f5b719;outline-offset:3px;border-radius:50%}
 
+
+/* v13: use the official INTEK crest in the sidebar */
+.brand img{width:76px!important;height:96px!important;object-fit:contain!important;object-position:center!important;background:#fff!important;border-radius:12px!important;padding:3px!important;display:block;margin:0 auto 6px!important;box-shadow:0 3px 12px #00163b55!important}
+@media(max-width:850px){.brand img{width:48px!important;height:62px!important;flex:0 0 48px!important;margin:0!important;border-radius:8px!important;padding:2px!important}}
+
 </style>
 </head>
 <body>
 <div class="layout">
 <aside class="sidebar">
   <div class="brand">
-    <img src="assets/intek-campus.jpg" alt="Foto kampus INTEK" style="object-position:center;object-fit:cover">
+    <img src="assets/intek-logo.png" alt="Logo rasmi Sekolah Berasrama Penuh Integrasi Kuantan">
     <div><h2>INTEK</h2><p>SEKOLAH BERASRAMA PENUH<br>INTEGRASI KUANTAN</p></div>
   </div>
   <nav class="nav" aria-label="Navigasi utama">
@@ -622,6 +629,7 @@ body.dark .enrol-updated{background:#122d50;color:#dbeaff;border-color:#29496f}
 
   <section class="hero" id="utama">
     <div class="hero-copy">
+      <p class="time-greeting" id="timeGreeting" aria-live="polite">Selamat datang, warga INTEK!</p>
       <p class="welcome">Selamat Datang ke</p>
       <h2>DASHBOARD<br>INDUK INTEK <span>2027</span></h2>
       <div class="motto">SEKOLAH BERASRAMA PENUH INTEGRASI KUANTAN<br><strong>“WE ARE THE I”</strong><br>AI · STEM · INTELLIGENCE</div>
@@ -749,6 +757,16 @@ function updateClock(){
   timeZone: tz, hour:"2-digit", minute:"2-digit", second:"2-digit", hourCycle:"h23"
  }).formatToParts(now).reduce((o,p)=>(o[p.type]=p.value,o),{});
  const hour = Number(parts.hour), minute = Number(parts.minute), second = Number(parts.second);
+ // Ucapan berubah mengikut waktu Malaysia dan dikemas kini bersama jam.
+ const greeting = hour >= 5 && hour < 12
+   ? "Selamat pagi, warga INTEK!"
+   : hour >= 12 && hour < 14
+     ? "Selamat tengah hari, warga INTEK!"
+     : hour >= 14 && hour < 19
+       ? "Selamat petang, warga INTEK!"
+       : "Selamat malam, warga INTEK!";
+ const greetingElement = document.getElementById("timeGreeting");
+ if (greetingElement && greetingElement.textContent !== greeting) greetingElement.textContent = greeting;
  const hourAngle = ((hour % 12) + minute/60 + second/3600) * 30;
  const minuteAngle = (minute + second/60) * 6;
  const secondAngle = second * 6;
