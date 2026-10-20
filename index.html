@@ -120,6 +120,65 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
  .clock{width:84px;height:84px}
 }
 
+
+/* Dashboard target-layout repair */
+.hero{grid-template-columns:minmax(0,1.08fr) minmax(400px,1fr);min-height:250px}
+.hero-copy{padding:25px 26px}
+.hero-copy h2{font-size:clamp(2.4rem,4vw,3.7rem);line-height:.98}
+.hero-photo{min-height:250px}
+.hero-photo img{min-height:250px;max-height:300px;object-position:center 48%}
+.clockcard{width:265px;right:14px;top:14px;padding:13px}
+.clock{width:104px;height:104px}
+.datebox .daynum{font-size:2.3rem}
+.ticker{min-height:42px}
+.ticker-text{display:flex;flex:0 0 auto;width:max-content;gap:2.5rem;padding-left:0;animation:marquee-intek 34s linear infinite;white-space:nowrap}
+.ticker-text span{display:block;flex:0 0 auto}
+@keyframes marquee-intek{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.main-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(300px,.88fr);gap:10px;align-items:stretch}
+.main-grid>.panel{height:100%}
+.countdown-panel .panel-head h3{font-size:.98rem}
+.count-grid-inner{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.count-grid-inner .count-card{min-height:126px;display:flex;align-items:center;gap:9px;padding:11px 10px;border-radius:13px}
+.count-grid-inner .count-icon{font-size:1.75rem;flex-shrink:0}
+.count-grid-inner .count-card>div:last-child{min-width:0}
+.count-grid-inner .count-card small{font-size:.68rem;line-height:1.25}
+.count-grid-inner .count-card strong{font-size:.86rem;line-height:1.25;margin:3px 0}
+.count-grid-inner .count-number{font-size:1.75rem!important;line-height:1.05;display:block;margin:3px 0}
+.count-grid-inner .count-card small:last-child{font-size:.72rem}
+.panel{padding:14px}
+.panel-head h3{font-size:1rem}
+.item{grid-template-columns:48px minmax(0,1fr) 16px;gap:9px;padding:9px 0}
+.item h4{font-size:.82rem}
+.item p{font-size:.73rem}
+.enrol table{table-layout:fixed}
+.enrol th,.enrol td{overflow:hidden;white-space:nowrap}
+.enrol th:first-child,.enrol td:first-child{width:29%}
+.enrol th:nth-child(2),.enrol td:nth-child(2){width:20%}
+.enrol th:nth-child(3),.enrol td:nth-child(3){width:27%}
+.enrol th:nth-child(4),.enrol td:nth-child(4){width:24%}
+@media(max-width:1350px){
+ .main-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .countdown-panel{grid-column:1/-1}
+ .count-grid-inner{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .count-grid-inner .count-card{min-height:100px}
+ .hero{grid-template-columns:1fr}
+ .hero-photo{min-height:210px}
+ .hero-photo img{min-height:210px;max-height:260px}
+}
+@media(max-width:950px){
+ .main-grid{grid-template-columns:1fr}
+ .countdown-panel{grid-column:auto}
+ .count-grid-inner{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .hero-copy h2{font-size:clamp(2.1rem,6vw,3.2rem)}
+}
+@media(max-width:560px){
+ .count-grid-inner{grid-template-columns:1fr 1fr}
+ .count-grid-inner .count-card{min-height:108px;display:block}
+ .count-grid-inner .count-icon{font-size:1.4rem}
+ .clockcard{position:relative;inset:auto;margin:10px;width:auto}
+ .hero-photo img{min-height:130px}
+}
+
 </style>
 </head>
 <body>
@@ -178,14 +237,7 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
     </div>
   </section>
 
-  <div class="ticker" aria-label="Maklumat bergerak"><div class="ticker-icon">📢</div><div class="ticker-window"><div class="ticker-text">SELAMAT DATANG KE DASHBOARD INTEK 2027 · #WE ARE THE BEST · HARI TERBUKA INTEK (HATI) 2027 · SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA ·</div></div></div>
-
-  <section class="countdowns" aria-label="Countdown acara penting">
-    <article class="count-card"><div class="count-icon">🎓</div><div><small>SPM 2026 · 06 NOV 2026</small><strong>SPM 2026</strong><span class="count-number" id="cd-spm">—</span><small>HARI LAGI</small></div></article>
-    <article class="count-card"><div class="count-icon">📋</div><div><small>UASA/PDA T4 · 26 OKT 2026</small><strong>UASA/PDA T4</strong><span class="count-number" id="cd-uasa">—</span><small>HARI LAGI</small></div></article>
-    <article class="count-card"><div class="count-icon">🏫</div><div><small>BUKA SESI · 04 JAN 2027</small><strong>BUKA SESI 2027</strong><span class="count-number" id="cd-sesi">—</span><small>HARI LAGI</small></div></article>
-    <article class="count-card"><div class="count-icon">📝</div><div><small>MTG3 2027 · 10 OKT 2027</small><strong>MTG3 2027</strong><span class="count-number" id="cd-mtg3">—</span><small>HARI LAGI</small></div></article>
-  </section>
+  <div class="ticker" aria-label="Maklumat bergerak"><div class="ticker-icon">📢</div><div class="ticker-window"><div class="ticker-text"><span>SELAMAT DATANG KE DASHBOARD INTEK 2027…　 #WE ARE THE BEST…　 HARI TERBUKA INTEK (HATI) 2027　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　</span><span aria-hidden="true">SELAMAT DATANG KE DASHBOARD INTEK 2027…　 #WE ARE THE BEST…　 HARI TERBUKA INTEK (HATI) 2027　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　</span></div></div></div>
 
   <section class="main-grid">
     <article class="panel" id="announcements">
@@ -201,6 +253,15 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
       <div class="item searchable"><div class="datebadge"><strong>05</strong><span>NOV</span></div><div><h4>KARNIVAL STEM INTEK 2027</h4><p>5–7 November 2027 · Dewan & Makmal</p></div><span class="arrow">›</span></div>
       <div class="item searchable"><div class="datebadge"><strong>21</strong><span>NOV</span></div><div><h4>KEJOHANAN OLAHRAGA TAHUNAN INTEK</h4><p>21–22 November 2027 · Padang INTEK</p></div><span class="arrow">›</span></div>
       <div class="item searchable"><div class="datebadge"><strong>10</strong><span>DIS</span></div><div><h4>MESYUARAT AGUNG PIBG 2027</h4><p>10 Disember 2027 · Dewan INTEK</p></div><span class="arrow">›</span></div>
+    </article>
+    <article class="panel countdown-panel" id="countdownPanel">
+      <div class="panel-head"><span class="panel-icon">🗓️</span><h3>COUNTDOWN ACARA PENTING</h3></div>
+      <div class="count-grid-inner">
+<article class="count-card"><div class="count-icon">🎓</div><div><small>SPM 2026 · 06 NOV 2026</small><strong>SPM 2026</strong><span class="count-number" id="cd-spm">—</span><small>HARI LAGI</small></div></article>
+<article class="count-card"><div class="count-icon">📋</div><div><small>UASA/PDA T4 · 26 OKT 2026</small><strong>UASA/PDA T4</strong><span class="count-number" id="cd-uasa">—</span><small>HARI LAGI</small></div></article>
+<article class="count-card"><div class="count-icon">🏫</div><div><small>BUKA SESI · 04 JAN 2027</small><strong>BUKA SESI 2027</strong><span class="count-number" id="cd-sesi">—</span><small>HARI LAGI</small></div></article>
+<article class="count-card"><div class="count-icon">📝</div><div><small>MTG3 2027 · 10 OKT 2027</small><strong>MTG3 2027</strong><span class="count-number" id="cd-mtg3">—</span><small>HARI LAGI</small></div></article>
+      </div>
     </article>
   </section>
 
@@ -248,14 +309,19 @@ enrolment.forEach(r=>{const tr=document.createElement("tr");tr.innerHTML=`<td><b
 function openClass(name="1AKT"){const all=enrolment.flatMap(r=>r.classes);const c=all.find(x=>x[0]===name)||all[0];$("#selectedClass").textContent="KELAS "+c[0];$("#classBoys").textContent=Number(c[1])||0;$("#classGirls").textContent=Number(c[2])||0;$("#classTotal").textContent=(Number(c[1])||0)+(Number(c[2])||0);$("#classModal").classList.add("open");}
 const picker=$("#classPicker");enrolment.flatMap(r=>r.classes).forEach(c=>{const b=document.createElement("button");b.textContent=c[0];b.addEventListener("click",()=>openClass(c[0]));picker.appendChild(b)});
 $("#openClass").addEventListener("click",()=>openClass());$("#closeModal").addEventListener("click",()=>$("#classModal").classList.remove("open"));$("#classModal").addEventListener("click",e=>{if(e.target.id==="classModal")e.currentTarget.classList.remove("open")});
-const totals=enrolment.reduce((a,r)=>({
- b:a.b+(Number.isFinite(Number(r.boys))?Number(r.boys):0),
- g:a.g+(Number.isFinite(Number(r.girls))?Number(r.girls):0)
+const toSafeNumber = value => {
+ const n = Number(value);
+ return Number.isFinite(n) ? n : 0;
+};
+const totals = enrolment.reduce((a,r)=>({
+ b:a.b+toSafeNumber(r.boys),
+ g:a.g+toSafeNumber(r.girls)
 }),{b:0,g:0});
-$("#totalB").textContent=totals.b.toLocaleString("en-US");
-$("#totalG").textContent=totals.g.toLocaleString("en-US");
-$("#totalAll").textContent=(totals.b+totals.g).toLocaleString("en-US");
-$("#statStudents").textContent=(totals.b+totals.g).toLocaleString("en-US");
+const totalStudents = totals.b + totals.g;
+$("#totalB").textContent = totals.b.toLocaleString("en-US");
+$("#totalG").textContent = totals.g.toLocaleString("en-US");
+$("#totalAll").textContent = totalStudents.toLocaleString("en-US");
+$("#statStudents").textContent = totalStudents.toLocaleString("en-US");
 function updateClock(){const now=new Date();$("#dayName").textContent=new Intl.DateTimeFormat("ms-MY",{weekday:"long"}).format(now).toUpperCase();$("#dayNumber").textContent=now.getDate();$("#monthYear").textContent=new Intl.DateTimeFormat("ms-MY",{month:"long",year:"numeric"}).format(now);$("#digitalClock").textContent=new Intl.DateTimeFormat("en-MY",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:true,timeZone:"Asia/Kuala_Lumpur"}).format(now);$("#prayerDate").textContent=new Intl.DateTimeFormat("ms-MY",{dateStyle:"long",timeZone:"Asia/Kuala_Lumpur"}).format(now);}
 function countdown(id,date){const target=new Date(date+"T00:00:00+08:00");const today=new Date();const localToday=new Date(today.toLocaleString("en-US",{timeZone:"Asia/Kuala_Lumpur"}));localToday.setHours(0,0,0,0);const n=Math.ceil((target-localToday)/86400000);$(id).textContent=n<0?"TAMAT":n===0?"HARI INI":String(n).padStart(3,"0");}
 function updateCountdowns(){countdown("#cd-spm","2026-11-06");countdown("#cd-uasa","2026-10-26");countdown("#cd-sesi","2027-01-04");countdown("#cd-mtg3","2027-10-10")}
