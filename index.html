@@ -131,6 +131,7 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
 .hero-prayer-strip .prayertime b{font-size:.76rem;margin-top:2px}
 .hero-prayer-strip .prayertime span{font-size:.82rem}
 .hero-prayer-strip .quote{
+  transform:translateY(-48px);
   min-height:0;
   padding:10px 13px;
   background:rgba(8,38,83,.30);
@@ -172,7 +173,8 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
     margin:0 14px 14px;
     grid-template-columns:minmax(0,1.2fr) minmax(180px,.8fr);
   }
-  .hero-prayer-strip .prayer{transform:none;grid-template-columns:82px repeat(5,minmax(0,1fr))}
+  .hero-prayer-strip .prayer,.hero-prayer-strip .quote{transform:none}
+  .hero-prayer-strip .prayer{grid-template-columns:82px repeat(5,minmax(0,1fr))}
   .hero-visual{min-height:280px}
 }
 @media(max-width:760px){
