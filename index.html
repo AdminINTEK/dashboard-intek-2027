@@ -32,6 +32,29 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
   50% { opacity: .58; filter: brightness(1.08); }
 }
 
+
+/* V15.5 FIX: animasi nyata pada lencana PENTING dalam pengumuman */
+.announcement-item .badge-penting,
+.announcement-item .important-badge,
+.announcement-item .badge.important,
+.announcement-item .penting-badge,
+.announcement-item .badge-red,
+.announcement-item .tag-penting,
+.announcement-item .pill-penting,
+.announcement-item .badge {
+  animation: intekPentingBlink 1.6s ease-in-out infinite !important;
+  -webkit-animation: intekPentingBlink 1.6s ease-in-out infinite !important;
+  will-change: opacity, filter;
+}
+@keyframes intekPentingBlink {
+  0%, 100% { opacity: 1 !important; filter: brightness(1) !important; }
+  50% { opacity: .35 !important; filter: brightness(1.15) !important; }
+}
+@-webkit-keyframes intekPentingBlink {
+  0%, 100% { opacity: 1; -webkit-filter: brightness(1); }
+  50% { opacity: .35; -webkit-filter: brightness(1.15); }
+}
+
 </style>
 </head>
 <body>
