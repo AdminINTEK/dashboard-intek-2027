@@ -254,6 +254,46 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
 @media(max-width:850px){.dashboard-bottom-layout{grid-template-columns:1fr}.dashboard-bottom-left .bottom-grid{grid-template-columns:1fr}.dashboard-bottom-left .statsrow{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-bottom-left .stat:first-child{grid-column:span 2}.dashboard-bottom-layout>.photo-slider{height:220px;min-height:220px}}
 @media(max-width:480px){.dashboard-bottom-left .prayer{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-bottom-left .prayer-intro{grid-column:span 2}.dashboard-bottom-left .statsrow{grid-template-columns:1fr 1fr}}
 
+
+/* v7 layout repair requested by INTEK */
+@media (min-width: 1100px) {
+  .layout { grid-template-columns: 25vw minmax(0,1fr) !important; }
+  .sidebar { min-width:0; padding-left:14px; padding-right:14px; }
+  .brand img { width:88px; height:88px; }
+  .nav button { font-size:1rem; padding:13px 12px; }
+  .enrol { font-size:.82rem; }
+  .photo-slider { height:198px !important; }
+  .bottom-feature-row { grid-template-columns:minmax(0,.72fr) minmax(0,1.8fr) !important; }
+}
+.photo-slider { height:198px !important; }
+.photo-slider .slide img { width:100%; height:100%; object-fit:cover; object-position:center 45%; }
+.photo-slider .slide:after { background:linear-gradient(90deg,#041e4b99 0%,#041e4b22 58%,transparent 100%) !important; }
+.photo-slider .slide figcaption { font-size:clamp(1rem,1.3vw,1.3rem); }
+.clockcard {
+  width:clamp(285px,22vw,360px) !important;
+  padding:18px !important;
+  background:color-mix(in srgb,var(--surface) 40%,transparent) !important;
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+  border:1px solid #ffffff9c !important;
+  box-shadow:0 8px 28px #06285c30 !important;
+}
+.clock { width:clamp(104px,7.5vw,132px) !important;height:clamp(104px,7.5vw,132px) !important; }
+.datebox .daynum { font-size:clamp(2.3rem,2.5vw,3rem) !important; }
+.digital { font-size:clamp(1rem,1.2vw,1.3rem) !important; }
+.hijri-date { font-size:.78rem !important; }
+@media(max-width:1099px) {
+  .layout { grid-template-columns:210px minmax(0,1fr) !important; }
+  .photo-slider { height:180px !important; }
+  .clockcard { width:min(320px,55%) !important; }
+}
+@media(max-width:850px) {
+  .layout { grid-template-columns:1fr !important; }
+  .sidebar { min-height:auto; }
+  .photo-slider { height:170px !important; }
+  .clockcard { position:relative !important; width:auto !important; margin:8px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -461,6 +501,14 @@ $("#search").addEventListener("input",e=>{const q=e.target.value.toLowerCase().t
    track.addEventListener("mouseenter",()=>track.style.animationPlayState="paused");
    track.addEventListener("mouseleave",()=>track.style.animationPlayState="running");
  }
+ document.querySelectorAll(".photo-slider .slide img").forEach(img=>{
+   img.addEventListener("error",()=>{
+     if(!img.dataset.fallbackUsed){
+       img.dataset.fallbackUsed="1";
+       img.src="assets/intek-campus.jpg";
+     }
+   });
+ });
  const slides=[...document.querySelectorAll(".photo-slider .slide")];
  const dots=[...document.querySelectorAll(".slider-dots button")];
  if(slides.length){
