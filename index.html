@@ -77,6 +77,49 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
 @media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{min-height:auto;padding:10px}.brand{display:flex;align-items:center;text-align:left;gap:10px;padding:0 4px 10px}.brand img{width:48px;height:48px}.brand h2{margin:0}.brand p{display:none}.nav{display:flex;overflow-x:auto}.nav button{min-width:max-content;width:auto;padding:9px 11px}.nav button .ico{width:auto}.enrol{margin-top:0}.enrol table{font-size:.7rem}.topbar{align-items:flex-start;flex-direction:column}.tools{justify-content:flex-start}.hero-copy{padding:16px}.hero-photo{min-height:140px}.hero-photo img{min-height:140px}.clockcard{margin:8px;display:block}.clockrow{justify-content:flex-start}.main-grid{grid-template-columns:1fr}.prayer{grid-template-columns:repeat(3,1fr)}.prayer-intro{grid-column:span 3}.statsrow{grid-template-columns:repeat(2,1fr)}.stat:first-child{grid-column:span 2}footer{flex-direction:column}}
 @media(max-width:480px){main{padding:9px}.countdowns{grid-template-columns:1fr 1fr}.count-card{padding:8px;gap:6px}.count-number{font-size:1.2rem!important}.count-card strong{font-size:.78rem}.clockcard{display:block}.prayer{grid-template-columns:repeat(2,1fr)}.prayer-intro{grid-column:span 2}.statsrow{grid-template-columns:1fr 1fr}.stat{padding:8px}.stat:first-child{grid-column:span 2}.search{width:110px}.tagline{letter-spacing:2px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+
+/* Refinements v2: improve legibility, ticker visibility and responsive balance */
+.school-title h1{font-size:clamp(1.2rem,2.15vw,1.85rem);font-weight:950}
+.tagline{font-weight:900}
+.hero{grid-template-columns:minmax(0,1.12fr) minmax(360px,.95fr)}
+.hero-copy{padding:24px 26px}
+.hero-copy h2{font-size:clamp(2.25rem,4vw,3.8rem)}
+.hero-photo img{object-position:center 48%}
+.clockcard{width:255px;padding:14px}
+.clock{width:100px;height:100px}
+.clock:before{top:15px;height:34px}
+.clock:after{top:9px;height:40px}
+.datebox .daynum{font-size:2.25rem}
+.digital{font-size:1rem}
+.ticker-text{padding-left:0;animation:scroll-fixed 30s linear infinite}
+@keyframes scroll-fixed{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+.count-card{padding:12px 14px}
+.count-number{font-size:1.65rem!important}
+.panel{padding:15px}
+.panel-head h3{font-size:1.05rem}
+.item{padding:10px 0}
+.item h4{font-size:.9rem}
+.item p{font-size:.8rem}
+.datebadge{padding:7px 3px}
+.prayer-intro strong{font-size:1rem}
+.quote p{font-size:.9rem}
+.stat{padding:12px}
+.stat strong{font-size:1.25rem}
+.nav button{font-size:.88rem}
+.enrol table{font-size:.78rem}
+.enrol th,.enrol td{padding:7px 3px}
+@media(max-width:1250px){
+ .hero{grid-template-columns:1fr}
+ .hero-photo{min-height:180px}
+ .hero-photo img{min-height:180px;max-height:240px}
+ .clockcard{width:auto}
+}
+@media(max-width:850px){
+ .hero-copy{padding:18px}
+ .hero-copy h2{font-size:clamp(2rem,7vw,3rem)}
+ .clock{width:84px;height:84px}
+}
+
 </style>
 </head>
 <body>
@@ -202,10 +245,17 @@ const enrolment = [
 const $=s=>document.querySelector(s);
 const enrolBody=$("#enrolBody");
 enrolment.forEach(r=>{const tr=document.createElement("tr");tr.innerHTML=`<td><button class="form-pick" style="padding:4px 8px;font-weight:900">${r.form}</button></td><td>${r.boys}</td><td>${r.girls}</td><td>${r.boys+r.girls}</td>`;tr.querySelector("button").addEventListener("click",()=>openClass(r.classes[0][0]));enrolBody.appendChild(tr)});
-function openClass(name="1AKT"){const all=enrolment.flatMap(r=>r.classes);const c=all.find(x=>x[0]===name)||all[0];$("#selectedClass").textContent="KELAS "+c[0];$("#classBoys").textContent=c[1];$("#classGirls").textContent=c[2];$("#classTotal").textContent=c[1]+c[2];$("#classModal").classList.add("open");}
+function openClass(name="1AKT"){const all=enrolment.flatMap(r=>r.classes);const c=all.find(x=>x[0]===name)||all[0];$("#selectedClass").textContent="KELAS "+c[0];$("#classBoys").textContent=Number(c[1])||0;$("#classGirls").textContent=Number(c[2])||0;$("#classTotal").textContent=(Number(c[1])||0)+(Number(c[2])||0);$("#classModal").classList.add("open");}
 const picker=$("#classPicker");enrolment.flatMap(r=>r.classes).forEach(c=>{const b=document.createElement("button");b.textContent=c[0];b.addEventListener("click",()=>openClass(c[0]));picker.appendChild(b)});
 $("#openClass").addEventListener("click",()=>openClass());$("#closeModal").addEventListener("click",()=>$("#classModal").classList.remove("open"));$("#classModal").addEventListener("click",e=>{if(e.target.id==="classModal")e.currentTarget.classList.remove("open")});
-const totals=enrolment.reduce((a,r)=>({b:a.b+r.boys,g:a.g+r.g}),{b:0,g:0});$("#totalB").textContent=totals.b.toLocaleString("en-US");$("#totalG").textContent=totals.g.toLocaleString("en-US");$("#totalAll").textContent=(totals.b+totals.g).toLocaleString("en-US");$("#statStudents").textContent=(totals.b+totals.g).toLocaleString("en-US");
+const totals=enrolment.reduce((a,r)=>({
+ b:a.b+(Number.isFinite(Number(r.boys))?Number(r.boys):0),
+ g:a.g+(Number.isFinite(Number(r.girls))?Number(r.girls):0)
+}),{b:0,g:0});
+$("#totalB").textContent=totals.b.toLocaleString("en-US");
+$("#totalG").textContent=totals.g.toLocaleString("en-US");
+$("#totalAll").textContent=(totals.b+totals.g).toLocaleString("en-US");
+$("#statStudents").textContent=(totals.b+totals.g).toLocaleString("en-US");
 function updateClock(){const now=new Date();$("#dayName").textContent=new Intl.DateTimeFormat("ms-MY",{weekday:"long"}).format(now).toUpperCase();$("#dayNumber").textContent=now.getDate();$("#monthYear").textContent=new Intl.DateTimeFormat("ms-MY",{month:"long",year:"numeric"}).format(now);$("#digitalClock").textContent=new Intl.DateTimeFormat("en-MY",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:true,timeZone:"Asia/Kuala_Lumpur"}).format(now);$("#prayerDate").textContent=new Intl.DateTimeFormat("ms-MY",{dateStyle:"long",timeZone:"Asia/Kuala_Lumpur"}).format(now);}
 function countdown(id,date){const target=new Date(date+"T00:00:00+08:00");const today=new Date();const localToday=new Date(today.toLocaleString("en-US",{timeZone:"Asia/Kuala_Lumpur"}));localToday.setHours(0,0,0,0);const n=Math.ceil((target-localToday)/86400000);$(id).textContent=n<0?"TAMAT":n===0?"HARI INI":String(n).padStart(3,"0");}
 function updateCountdowns(){countdown("#cd-spm","2026-11-06");countdown("#cd-uasa","2026-10-26");countdown("#cd-sesi","2027-01-04");countdown("#cd-mtg3","2027-10-10")}
