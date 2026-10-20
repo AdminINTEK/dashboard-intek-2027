@@ -237,6 +237,60 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
 /* V17 — susun atur responsif untuk enam kad statistik */
 @media(max-width:1050px){.statsrow{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:480px){.statsrow{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{min-height:88px;padding:10px;gap:8px}.stat .sym{width:40px;height:40px;flex-basis:40px;font-size:1.45rem}.stat strong{font-size:1.3rem}}
+
+/* V18 — Akses Pantas: kad berwarna, ikon berwarna dan latar abstrak */
+.quick-grid{gap:10px}
+.quick{
+  --card-a:#eaf4ff;--card-b:#d9eaff;--card-edge:#a9d0ff;--icon-a:#0878e8;--icon-b:#0b4d91;--card-ink:#10366f;
+  position:relative;isolation:isolate;overflow:hidden;min-height:120px;padding:13px 12px;gap:9px;border-radius:17px;
+  background:linear-gradient(145deg,#fff 0%,var(--card-a) 100%);
+  border:1px solid var(--card-edge);box-shadow:0 7px 18px rgba(12,55,105,.09);
+  color:var(--card-ink);transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.quick:before,.quick:after{content:"";position:absolute;z-index:-1;pointer-events:none;border-radius:50%;background:var(--card-b);opacity:.58;transition:transform .25s,opacity .25s}
+.quick:before{width:100px;height:100px;right:-38px;bottom:-46px}
+.quick:after{width:48px;height:48px;right:22px;bottom:-29px;opacity:.42}
+.quick:nth-child(2){--card-a:#fff7e3;--card-b:#ffe7a5;--card-edge:#ffd36b;--icon-a:#ffd65e;--icon-b:#ffad20;--card-ink:#694000}
+.quick:nth-child(3){--card-a:#e9faf4;--card-b:#a8ecd8;--card-edge:#8bdfc5;--icon-a:#17b98a;--icon-b:#078463;--card-ink:#075b43}
+.quick:nth-child(4){--card-a:#f4edff;--card-b:#d6c2ff;--card-edge:#c3a5ff;--icon-a:#a477f5;--icon-b:#7043c7;--card-ink:#482a88}
+.quick:nth-child(5){--card-a:#fff0f5;--card-b:#ffbfd3;--card-edge:#ffa2bf;--icon-a:#fa6d9b;--icon-b:#d92f6b;--card-ink:#941746}
+.quick:nth-child(6){--card-a:#eaf8ff;--card-b:#a8e1ff;--card-edge:#8ad5ff;--icon-a:#27b8f4;--icon-b:#0878c8;--card-ink:#075985}
+.quick .qicon{
+  position:relative;z-index:1;width:44px;height:44px;flex:0 0 44px;border-radius:14px;
+  background:linear-gradient(145deg,var(--icon-a),var(--icon-b));color:#fff;
+  display:grid;place-items:center;box-shadow:0 6px 13px color-mix(in srgb,var(--icon-b) 24%,transparent);
+}
+.quick:nth-child(2) .qicon{color:#183c68;box-shadow:0 6px 13px #ffbd3630}
+.quick .qicon svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.quick strong,.quick small{position:relative;z-index:1}
+.quick strong{font-size:.79rem;letter-spacing:-.1px}
+.quick small{font-size:.66rem;line-height:1.35;color:color-mix(in srgb,var(--card-ink) 72%,#8292a8)}
+.quick:hover{transform:translateY(-4px);border-color:var(--icon-a);box-shadow:0 12px 24px rgba(12,55,105,.15)}
+.quick:hover:before{transform:scale(1.18);opacity:.75}
+.quick .qicon{transition:background .18s,color .18s,transform .18s,box-shadow .18s}
+.quick:hover .qicon{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 17px color-mix(in srgb,var(--icon-b) 32%,transparent)}
+@media(prefers-reduced-motion:reduce){.quick,.quick:before,.quick:after,.quick .qicon{transition:none}}
+/* Kurangkan ketinggian banner supaya ruang kosong di bawah panel waktu solat berkurang. */
+.hero{min-height:350px}
+.hero-visual{min-height:350px}
+.hero-copy{padding-bottom:88px}
+.hero-prayer-strip{bottom:8px}
+.hero-prayer-strip .prayer,.hero-prayer-strip .quote{transform:translateY(-16px)}
+@media(max-width:1200px){
+  .hero{min-height:365px}
+  .hero-visual{min-height:365px}
+  .hero-prayer-strip{bottom:8px}
+  .hero-prayer-strip .prayer,.hero-prayer-strip .quote{transform:translateY(-14px)}
+}
+@media(max-width:1050px){
+  .hero{min-height:0}
+  .hero-visual{min-height:280px}
+  .hero-copy{padding-bottom:22px}
+  .hero-prayer-strip{bottom:auto}
+  .hero-prayer-strip .prayer,.hero-prayer-strip .quote{transform:none}
+}
+@media(max-width:760px){.quick{min-height:100px;padding:11px}.quick .qicon{width:40px;height:40px;flex-basis:40px}}
+
 </style>
 </head>
 <body>
@@ -277,12 +331,12 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
   <div class="ticker" aria-label="Maklumat bergerak"><div class="ticker-icon">📢</div><div class="ticker-window"><div class="ticker-text"><span>SELAMAT DATANG KE INTEK SMART PORTAL 2027　 •　 #WE ARE THE BEST　 •　 HARI TERBUKA INTEK (HATI) 2027　 •　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　 •　</span><span aria-hidden="true">SELAMAT DATANG KE INTEK SMART PORTAL 2027　 •　 #WE ARE THE BEST　 •　 HARI TERBUKA INTEK (HATI) 2027　 •　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　 •　</span></div></div></div>
   <section id="quick"><div class="section-head"><div><div class="tag">SATU PINTU · PELBAGAI URUSAN</div><h3>Akses Pantas</h3><p>Pilih kategori untuk mendapatkan pautan dan sistem rasmi INTEK.</p></div><button class="pill" id="allLinks">Lihat semua ↗</button></div>
     <div class="quick-grid">
-      <button class="quick" data-link="DELIMa"><span class="qicon">▣</span><strong>DELIMa</strong><small>Platform pembelajaran ↗</small></button>
-      <button class="quick" data-link="Jadual Waktu"><span class="qicon">◷</span><strong>Jadual Waktu</strong><small>Guru & kelas ↗</small></button>
-      <button class="quick" data-link="Dokumen Rasmi"><span class="qicon">▤</span><strong>Dokumen Rasmi</strong><small>Fail dan rujukan ↗</small></button>
-      <button class="quick" data-link="Tempahan Makmal"><span class="qicon">⚗</span><strong>Tempahan Makmal</strong><small>Permohonan ruang ↗</small></button>
-      <button class="quick" data-link="Laporan Kerosakan"><span class="qicon">⚒</span><strong>Laporan Kerosakan</strong><small>Aduan fasiliti ↗</small></button>
-      <button class="quick" data-link="Google Calendar"><span class="qicon">▦</span><strong>Kalendar INTEK</strong><small>Agenda sekolah ↗</small></button>
+      <button class="quick" data-link="DELIMa"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5V20H3z"/><path d="M9 20v-6h6v6M7 10h.01M12 10h.01M17 10h.01"/></svg></span><strong>DELIMa</strong><small>Platform pembelajaran ↗</small></button>
+      <button class="quick" data-link="Jadual Waktu"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><strong>Jadual Waktu</strong><small>Guru & kelas ↗</small></button>
+      <button class="quick" data-link="Dokumen Rasmi"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v5h4M9 12h7M9 16h7"/></svg></span><strong>Dokumen Rasmi</strong><small>Fail dan rujukan ↗</small></button>
+      <button class="quick" data-link="Tempahan Makmal"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 16h9"/></svg></span><strong>Tempahan Makmal</strong><small>Permohonan ruang ↗</small></button>
+      <button class="quick" data-link="Laporan Kerosakan"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m14 7 3-3 4 4-3 3M4 20l9-9M5 5l4-2 4 4-2 4-4-2z"/><path d="m14 12 6 6-2 2-6-6"/></svg></span><strong>Laporan Kerosakan</strong><small>Aduan fasiliti ↗</small></button>
+      <button class="quick" data-link="Google Calendar"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M12 14h2M7 17h2M12 17h2"/></svg></span><strong>Kalendar INTEK</strong><small>Agenda sekolah ↗</small></button>
     </div></section>
   <section class="dashboard-grid" id="events">
     <article class="panel searchable-panel"><div class="panel-head"><span class="panel-icon">📣</span><h3>PENGUMUMAN TERKINI</h3><button class="pill" data-link="Semua Pengumuman">LIHAT SEMUA →</button></div>
