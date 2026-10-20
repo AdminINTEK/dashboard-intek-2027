@@ -21,6 +21,17 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
 @media(max-width:760px){.shell{grid-template-columns:1fr}.sidebar{padding:9px 10px;gap:8px}.brand{padding:0 3px 9px;gap:10px}.brand img{width:43px;height:48px}.brand h2{font-size:.95rem}.brand p{font-size:.58rem}.nav-label{display:none}.nav{display:flex;overflow-x:auto;padding:2px 0 5px;scrollbar-width:thin}.nav button{min-width:max-content;width:auto;padding:8px 10px}.nav button span:last-child{font-size:.7rem}.nav button .ico{width:24px;height:24px}.side-bottom{display:none}.topbar{align-items:flex-start;flex-direction:column}.tools{justify-content:flex-start;width:100%}.search{flex:1;min-width:100px}.hero-copy{padding:24px 20px}.hero-copy h2{font-size:clamp(2rem,8vw,3.3rem)}.hero-visual{min-height:260px;clip-path:none;margin-left:0}.clockcard{width:205px;right:10px;top:10px}.clock{width:72px;height:72px}.quick-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.quick{min-height:84px;padding:10px}.quick strong{font-size:.7rem}.dashboard-grid{grid-template-columns:1fr}.count-panel{grid-column:auto}.count-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lower-grid{grid-template-columns:1fr}.prayer{grid-template-columns:repeat(3,minmax(0,1fr))}.prayer-intro{grid-column:span 3}.statsrow{grid-template-columns:repeat(2,minmax(0,1fr))}.slider{min-height:260px}footer{flex-direction:column}}
 @media(max-width:420px){main{padding:9px}.tools{gap:4px}.toolgroup button,.iconbtn{padding:7px 8px}.hero-copy{padding:20px 17px}.hero-copy h2{font-size:clamp(1.85rem,9vw,2.5rem);letter-spacing:-.8px}.hero-copy .sub{font-size:.62rem;letter-spacing:1.2px}.hero-visual{min-height:235px;clip-path:none;margin-left:0}.clockcard{width:190px;padding:9px}.clock{width:65px;height:65px}.datebox .daynum{font-size:1.7rem}.quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.count-grid{gap:6px}.count-card{padding:9px;grid-template-columns:28px minmax(0,1fr)}.count-card .cicon{font-size:1.25rem}.count-number{font-size:1.35rem!important}.panel{padding:11px}.item{grid-template-columns:39px minmax(0,1fr) 9px;gap:7px}.item h4{font-size:.72rem}.item p{font-size:.64rem}.prayer{grid-template-columns:repeat(2,minmax(0,1fr))}.prayer-intro{grid-column:span 2}.statsrow{grid-template-columns:1fr 1fr}.social{align-items:flex-start;flex-direction:column}.social-icons{width:100%;justify-content:space-between}.social-icons a{width:40px;height:40px}.slider{min-height:220px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.ticker-text{animation:marquee 28s linear infinite!important;animation-iteration-count:infinite!important;transform:translateX(0)}}
+
+/* Badge PENTING: animasi denyut sederhana */
+.badge-penting, .important-badge, .badge.important, .penting-badge {
+  animation: pentingPulse 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes pentingPulse {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50% { opacity: .58; filter: brightness(1.08); }
+}
+
 </style>
 </head>
 <body>
@@ -60,7 +71,7 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
     </div></section>
   <section class="dashboard-grid" id="events">
     <article class="panel searchable-panel"><div class="panel-head"><span class="panel-icon">📣</span><h3>PENGUMUMAN TERKINI</h3><button class="pill" data-link="Semua Pengumuman">LIHAT SEMUA →</button></div>
-      <div class="item searchable"><div class="datebadge"><strong>20</strong><span>OKT</span></div><div><h4><span class="important">PENTING</span> TAKLIMAT AGIHAN WAKTU MENGAJAR 2027</h4><p>Bilik Mesyuarat Utama · 10.00 pagi</p></div><span class="arrow">›</span></div>
+      <div class="item searchable"><div class="datebadge"><strong>20</strong><span>OKT</span></div><div><h4><span class="important badge-penting">PENTING</span> TAKLIMAT AGIHAN WAKTU MENGAJAR 2027</h4><p>Bilik Mesyuarat Utama · 10.00 pagi</p></div><span class="arrow">›</span></div>
       <div class="item searchable"><div class="datebadge"><strong>23</strong><span>OKT</span></div><div><h4>PENDAFTARAN HARI TERBUKA INTEK 2027</h4><p>Permohonan penyertaan pempamer dibuka</p></div><span class="arrow">›</span></div>
       <div class="item searchable"><div class="datebadge"><strong>18</strong><span>OKT</span></div><div><h4>PENYELENGGARAAN SISTEM DELIMa</h4><p>Akses mungkin terganggu pada waktu penyelenggaraan</p></div><span class="arrow">›</span></div>
       <div class="item searchable"><div class="datebadge"><strong>20</strong><span>OKT</span></div><div><h4>MAKLUMAN CUTI PERISTIWA</h4><p>Semak pengumuman rasmi pihak sekolah</p></div><span class="arrow">›</span></div>
