@@ -178,6 +178,51 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
  .hero-photo img{min-height:130px}
 }
 
+
+/* v5 repair: reliable marquee, compact social block + automatic photo slider, larger icons */
+.ticker{position:relative}
+.ticker-window{display:block!important;flex:1 1 auto!important;min-width:0!important;overflow:hidden!important;white-space:nowrap!important}
+.ticker-text{display:flex!important;align-items:center!important;gap:2.5rem!important;width:max-content!important;max-width:none!important;white-space:nowrap!important;padding:0!important;animation:intek-marquee-v5 32s linear infinite!important;will-change:transform!important}
+.ticker-text span{display:block!important;flex:0 0 auto!important;white-space:nowrap!important}
+.ticker:hover .ticker-text{animation-play-state:paused!important}
+@keyframes intek-marquee-v5{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.bottom-feature-row{display:grid;grid-template-columns:minmax(240px,.72fr) minmax(0,1.8fr);gap:12px;align-items:stretch;margin-top:10px}
+.bottom-feature-row .social{margin-top:0;min-width:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:14px;padding:16px}
+.bottom-feature-row .social>strong{font-size:1.05rem}
+.bottom-feature-row .social-icons{width:100%;display:flex;flex-wrap:wrap;gap:12px}
+.bottom-feature-row .social-icons a{width:58px;height:58px;font-size:2rem}
+.photo-slider{position:relative;min-width:0;height:132px;overflow:hidden;border-radius:14px;background:#082d65;border:1px solid #79baff;box-shadow:var(--shadow)}
+.slider-track,.slide{position:absolute;inset:0;width:100%;height:100%;margin:0}
+.slide{opacity:0;transition:opacity .8s ease;pointer-events:none}
+.slide.active{opacity:1;pointer-events:auto}
+.slide img{display:block;width:100%;height:100%;object-fit:cover}
+.slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#041e4bd9 0%,#041e4b4d 55%,transparent 100%)}
+.slide figcaption{position:absolute;z-index:1;left:18px;bottom:15px;color:#fff;font-size:clamp(.8rem,1.1vw,1.05rem);font-weight:950;text-shadow:0 2px 5px #001b4b}
+.slider-dots{position:absolute;z-index:3;right:14px;bottom:12px;display:flex;gap:7px}
+.slider-dots button{width:11px;height:11px;padding:0;border:2px solid #fff;border-radius:50%;background:#ffffff80;cursor:pointer}
+.slider-dots button.active{background:#ffc629;transform:scale(1.15)}
+/* Increase interface icons by approximately 50% while preserving layout. */
+.panel-icon{font-size:1.65rem!important;width:42px!important;height:42px!important}
+.nav button .nav-icon,.nav button .icon{font-size:1.45em!important}
+.count-grid-inner .count-icon{font-size:2.45rem!important}
+.stat .sym{font-size:1.65rem!important}
+.prayer-card .prayer-icon,.prayer-times .prayer-icon{font-size:1.5em!important}
+.social-icons a{width:58px;height:58px;font-size:2rem}
+.enrol-title button,.enrol .toggle{font-size:1.25em}
+.datebadge{min-width:40px}
+.item .arrow{font-size:1.25rem}
+@media(max-width:1250px){
+ .bottom-feature-row{grid-template-columns:minmax(210px,.7fr) minmax(0,1.5fr)}
+ .photo-slider{height:120px}
+ .bottom-feature-row .social-icons a{width:50px;height:50px;font-size:1.7rem}
+}
+@media(max-width:850px){
+ .bottom-feature-row{grid-template-columns:1fr}
+ .bottom-feature-row .social{align-items:center}
+ .bottom-feature-row .social-icons{justify-content:center}
+ .photo-slider{height:180px}
+}
+
 </style>
 </head>
 <body>
@@ -280,7 +325,19 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
     <div class="stat"><span class="sym">📚</span><div><strong>9</strong><small>PANITIA*</small></div></div>
   </section>
 
-  <section class="social"><strong>MEDIA SOSIAL INTEK</strong><div class="social-icons"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="TikTok">♪</a><a href="#" aria-label="Telegram">➤</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a></div></section>
+  <section class="bottom-feature-row">
+    <section class="social"><strong>MEDIA SOSIAL INTEK</strong><div class="social-icons"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="TikTok">♪</a><a href="#" aria-label="Telegram">➤</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a></div></section>
+    <section class="photo-slider" aria-label="Galeri foto INTEK">
+      <div class="slider-track">
+        <figure class="slide active"><img src="assets/intek-slide-1.jpg" alt="Bangunan utama INTEK Kuantan"><figcaption>INTEK KUANTAN · MEMBENTUK GENERASI PEMIMPIN</figcaption></figure>
+        <figure class="slide"><img src="assets/intek-slide-2.jpg" alt="Suasana dan seni bina sekolah INTEK"><figcaption>ILMU · AKHLAK · KEPIMPINAN · KECEMERLANGAN</figcaption></figure>
+        <figure class="slide"><img src="assets/intek-slide-3.jpg" alt="Kampus Sekolah Berasrama Penuh Integrasi Kuantan"><figcaption>INTEK — WE ARE THE I</figcaption></figure>
+      </div>
+      <div class="slider-dots" aria-label="Pilih foto">
+        <button class="active" type="button" aria-label="Foto 1"></button><button type="button" aria-label="Foto 2"></button><button type="button" aria-label="Foto 3"></button>
+      </div>
+    </section>
+  </section>
   <footer><span>📍 SEKOLAH BERASRAMA PENUH INTEGRASI KUANTAN · BANDAR INDERA MAHKOTA, 25200 KUANTAN, PAHANG</span><span>WE ARE THE I · MEMBENTUK GENERASI PEMIMPIN</span></footer>
 </main>
 </div>
@@ -362,6 +419,32 @@ document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",(
 document.querySelectorAll("[data-link]").forEach(b=>b.addEventListener("click",()=>showNotice("Pautan pengumuman rasmi belum ditetapkan.")));
 $("#showCalendar").addEventListener("click",()=>showNotice("Tambahkan URL Google Calendar rasmi pada konfigurasi dashboard."));
 $("#search").addEventListener("input",e=>{const q=e.target.value.toLowerCase().trim();document.querySelectorAll(".searchable").forEach(item=>item.style.display=item.textContent.toLowerCase().includes(q)?"grid":"none")});
+
+// Reliable marquee initialization and 5-second photo slider rotation.
+(function(){
+ const track=document.querySelector(".ticker-text");
+ if(track){
+   track.style.animation="none";
+   void track.offsetWidth;
+   track.style.animation="intek-marquee-v5 32s linear infinite";
+   track.addEventListener("mouseenter",()=>track.style.animationPlayState="paused");
+   track.addEventListener("mouseleave",()=>track.style.animationPlayState="running");
+ }
+ const slides=[...document.querySelectorAll(".photo-slider .slide")];
+ const dots=[...document.querySelectorAll(".slider-dots button")];
+ if(slides.length){
+   let current=0;
+   function showSlide(index){
+     current=(index+slides.length)%slides.length;
+     slides.forEach((s,i)=>s.classList.toggle("active",i===current));
+     dots.forEach((d,i)=>d.classList.toggle("active",i===current));
+   }
+   dots.forEach((d,i)=>d.addEventListener("click",()=>showSlide(i)));
+   showSlide(0);
+   setInterval(()=>showSlide(current+1),5000);
+ }
+})();
+
 </script>
 </body>
 </html>
