@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#063777">
-<title>Dashboard Induk INTEK 2027</title>
+<meta name="description" content="INTEK Smart Portal 2027 — portal maklumat, pengumuman, program, enrolmen dan pautan rasmi Sekolah Berasrama Penuh Integrasi Kuantan.">
+<title>INTEK Smart Portal 2027</title>
 <style>
 :root{--navy:#073779;--navy2:#041e4b;--blue:#0878e8;--gold:#f5b719;--gold2:#ffe18a;--ink:#102b60;--muted:#5e7193;--surface:#fff;--page:#edf5ff;--line:#d4e6fb;--shadow:0 5px 18px #124d8b13;--radius:18px;--font-scale:1}
 *{box-sizing:border-box}html{font-size:calc(16px * var(--font-scale));scroll-behavior:smooth}
@@ -15,7 +16,7 @@ button,input{font:inherit}button{cursor:pointer;font-weight:800}a{color:inherit;
 .sidebar{background:linear-gradient(165deg,#063b7d,#031a43 72%);color:#fff;padding:18px 12px;display:flex;flex-direction:column;gap:10px;min-height:100vh}
 .brand{text-align:center;padding:4px 8px 15px;border-bottom:1px solid #ffffff22}
 .brand img{width:75px;height:75px;object-fit:contain;background:#fff;border-radius:50%;padding:4px}
-.brand h2{font-size:1.45rem;letter-spacing:2px;margin:7px 0 2px}.brand p{font-size:.72rem;line-height:1.4;margin:0;font-weight:800}
+.brand h2{font-size:1.45rem;letter-spacing:2px;margin:7px 0 2px}.brand p{font-size:.72rem;line-height:1.4;margin:0;font-weight:800}.brand p::first-line{color:#ffd34d;letter-spacing:.7px}
 .nav{display:grid;gap:5px}.nav button{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;border:1px solid transparent;border-radius:12px;background:transparent;color:#fff;text-align:left;transition:background .18s,color .18s,transform .18s}
 .nav button .ico{font-size:1.25rem;width:25px;text-align:center}.nav button:hover,.nav button:focus-visible{background:var(--gold);color:#09285c;transform:translateX(2px);outline:none}.nav button.active{background:linear-gradient(100deg,#ffe58a,#f8b819);color:#09285c;box-shadow:0 3px 12px #ffcb3c55}
 .enrol{margin-top:auto;background:#fff;color:#102b60;border:1px solid #8fc4ff;border-radius:14px;overflow:hidden}
@@ -590,7 +591,7 @@ body.dark .enrol-updated{background:#122d50;color:#dbeaff;border-color:#29496f}
 <aside class="sidebar">
   <div class="brand">
     <img src="assets/intek-logo.png" alt="Logo rasmi Sekolah Berasrama Penuh Integrasi Kuantan">
-    <div><h2>INTEK</h2><p>SEKOLAH BERASRAMA PENUH<br>INTEGRASI KUANTAN</p></div>
+    <div><h2>INTEK</h2><p>SMART PORTAL 2027<br>SEKOLAH BERASRAMA PENUH<br>INTEGRASI KUANTAN</p></div>
   </div>
   <nav class="nav" aria-label="Navigasi utama">
     <button class="active" data-section="utama"><span class="ico">⌂</span> UTAMA</button>
@@ -618,7 +619,7 @@ body.dark .enrol-updated{background:#122d50;color:#dbeaff;border-color:#29496f}
 </aside>
 <main>
   <header class="topbar">
-    <div class="school-title"><h1>SEKOLAH BERASRAMA PENUH INTEGRASI KUANTAN</h1><div class="tagline">MEMBENTUK GENERASI PEMIMPIN</div></div>
+    <div class="school-title"><h1>SEKOLAH BERASRAMA PENUH INTEGRASI KUANTAN</h1><div class="tagline">MEMBENTUK GENERASI PEMIMPIN <span style="display:inline-block;margin-left:8px;padding:3px 8px;border-radius:12px;background:#e3efff;color:#0755a8;letter-spacing:.7px;font-weight:900">INTEK SMART PORTAL</span></div></div>
     <div class="tools">
       <div class="toolgroup" aria-label="Pilih tema"><button id="themeLight" aria-pressed="true" title="Tema cerah">☀ LIGHT</button><button id="themeDark" aria-pressed="false" title="Tema gelap">☾ DARK</button></div>
       <div class="toolgroup" aria-label="Saiz tulisan"><button id="fontDown" title="Kecilkan tulisan">A−</button><button id="fontReset" title="Saiz asal">A</button><button id="fontUp" title="Besarkan tulisan">A+</button></div>
@@ -631,7 +632,7 @@ body.dark .enrol-updated{background:#122d50;color:#dbeaff;border-color:#29496f}
     <div class="hero-copy">
       <p class="time-greeting" id="timeGreeting" aria-live="polite">Selamat datang, warga INTEK!</p>
       <p class="welcome">Selamat Datang ke</p>
-      <h2>DASHBOARD<br>INDUK INTEK <span>2027</span></h2>
+      <h2>INTEK SMART<br>PORTAL <span>2027</span></h2>
       <div class="motto">SEKOLAH BERASRAMA PENUH INTEGRASI KUANTAN<br><strong>“WE ARE THE I”</strong><br>AI · STEM · INTELLIGENCE</div>
     </div>
     <div class="hero-photo">
@@ -647,7 +648,7 @@ body.dark .enrol-updated{background:#122d50;color:#dbeaff;border-color:#29496f}
     </div>
   </section>
 
-  <div class="ticker" aria-label="Maklumat bergerak"><div class="ticker-icon">📢</div><div class="ticker-window"><div class="ticker-text"><span>SELAMAT DATANG KE DASHBOARD INTEK 2027…　 #WE ARE THE BEST…　 HARI TERBUKA INTEK (HATI) 2027　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　</span><span aria-hidden="true">SELAMAT DATANG KE DASHBOARD INTEK 2027…　 #WE ARE THE BEST…　 HARI TERBUKA INTEK (HATI) 2027　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　</span></div></div></div>
+  <div class="ticker" aria-label="Maklumat bergerak"><div class="ticker-icon">📢</div><div class="ticker-window"><div class="ticker-text"><span>SELAMAT DATANG KE INTEK SMART PORTAL 2027…　 #WE ARE THE BEST…　 HARI TERBUKA INTEK (HATI) 2027　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　</span><span aria-hidden="true">SELAMAT DATANG KE INTEK SMART PORTAL 2027…　 #WE ARE THE BEST…　 HARI TERBUKA INTEK (HATI) 2027　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　</span></div></div></div>
 
   <section class="main-grid">
     <article class="panel" id="announcements">
@@ -685,7 +686,7 @@ body.dark .enrol-updated{background:#122d50;color:#dbeaff;border-color:#29496f}
         <div class="quote"><strong>✦ MUTIARA ISLAM</strong><p>“Dan katakanlah: Tuhanku, tambahkanlah aku ilmu pengetahuan.”</p><small>(Surah Taha, 20:114)</small></div>
       </section>
       <section class="statsrow">
-        <div class="stat"><span class="sym">▥</span><div><strong>STATISTIK RINGKAS INTEK 2027</strong><small>Enrolmen dikemas kini: 19 Oktober 2026</small></div></div>
+        <div class="stat"><span class="sym">▥</span><div><strong>STATISTIK RINGKAS INTEK SMART PORTAL 2027</strong><small>Enrolmen dikemas kini: 19 Oktober 2026</small></div></div>
         <div class="stat"><span class="sym">👥</span><div><strong>20</strong><small>KELAS</small></div></div>
         <div class="stat"><span class="sym">🧑‍🎓</span><div><strong id="statStudents">584</strong><small>MURID</small></div></div>
         <div class="stat"><span class="sym">👩‍🏫</span><div><strong>56</strong><small>GURU</small></div></div>
