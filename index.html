@@ -294,6 +294,226 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
   .clockcard { position:relative !important; width:auto !important; margin:8px !important; }
 }
 
+
+
+/* v8 RESPONSIVE LAYOUT: desktop, tablet and mobile */
+html, body { width:100%; max-width:100%; overflow-x:hidden; }
+img { max-width:100%; }
+.layout { width:100%; min-width:0; }
+.sidebar, main, .dashboard-bottom-left, .main-grid, .panel, .hero, .bottom-grid, .dashboard-bottom-layout, .statsrow, .bottom-feature-row { min-width:0; }
+
+/* Desktop: full dashboard with fixed-width navigation */
+@media (min-width: 1200px) {
+  .layout { grid-template-columns: 250px minmax(0,1fr) !important; }
+  .sidebar { padding:18px 12px !important; min-height:100vh; }
+  main { padding:14px 16px 12px !important; }
+  .main-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(300px,.88fr) !important; }
+  .dashboard-bottom-layout { grid-template-columns:minmax(0,1.18fr) minmax(300px,1fr) !important; }
+  .dashboard-bottom-layout > .photo-slider { min-height:250px !important; height:100% !important; }
+}
+
+/* Tablet: compact side navigation; cards flow into two columns */
+@media (min-width: 601px) and (max-width: 1199px) {
+  .layout { grid-template-columns:190px minmax(0,1fr) !important; }
+  .sidebar { padding:12px 8px !important; gap:8px; min-height:100vh; }
+  .brand img { width:58px; height:58px; }
+  .brand h2 { font-size:1.15rem; }
+  .brand p { font-size:.62rem; }
+  .nav { gap:4px; }
+  .nav button { padding:9px 7px; gap:7px; font-size:.76rem; }
+  .nav button .ico { width:20px; font-size:1.05rem; }
+  .enrol table { font-size:.64rem; }
+  .enrol th,.enrol td { padding:5px 2px; }
+  main { padding:10px !important; }
+  .topbar { align-items:flex-start; flex-wrap:wrap; }
+  .school-title h1 { font-size:clamp(1rem,2vw,1.45rem); }
+  .tagline { letter-spacing:2px; }
+  .tools { gap:4px; }
+  .toolgroup button,.iconbtn { padding:6px 8px; font-size:.72rem; }
+  .search { width:110px; }
+  .hero { grid-template-columns:minmax(0,1fr) minmax(0,.9fr) !important; }
+  .hero-copy { padding:16px !important; }
+  .hero-copy h2 { font-size:clamp(1.8rem,3.5vw,2.7rem) !important; }
+  .hero-photo,.hero-photo img { min-height:210px; }
+  .clockcard { width:min(285px,75%) !important; padding:10px !important; right:8px; top:8px; }
+  .clock { width:74px !important; height:74px !important; }
+  .datebox .daynum { font-size:1.8rem !important; }
+  .digital { font-size:.82rem !important; }
+  .main-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .main-grid > .panel:last-child { grid-column:span 2; }
+  .count-grid-inner { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
+  .dashboard-bottom-layout { grid-template-columns:minmax(0,1fr) minmax(0,.85fr) !important; }
+  .dashboard-bottom-left .bottom-grid { grid-template-columns:1fr !important; }
+  .dashboard-bottom-left .prayer { grid-template-columns:100px repeat(5,minmax(0,1fr)) !important; }
+  .dashboard-bottom-left .statsrow { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
+  .dashboard-bottom-left .stat:first-child { grid-column:span 4 !important; }
+  .dashboard-bottom-layout > .photo-slider { height:100% !important; min-height:220px !important; }
+  .social { flex-wrap:wrap; }
+  .social-icons { gap:7px; }
+  .social-icons a { width:38px; height:38px; font-size:1.2rem; }
+}
+
+/* Mobile: stacked dashboard, touch-friendly horizontal navigation */
+@media (max-width: 600px) {
+  .layout { display:flex !important; flex-direction:column !important; }
+  .sidebar { width:100%; min-height:0 !important; height:auto; padding:8px !important; gap:7px; }
+  .brand { display:flex !important; flex-direction:row; align-items:center; justify-content:flex-start; text-align:left !important; gap:10px; padding:2px 5px 8px !important; }
+  .brand img { width:44px !important; height:44px !important; flex:0 0 44px; }
+  .brand h2 { margin:0 !important; font-size:1.05rem !important; }
+  .brand p { display:block !important; font-size:.58rem !important; line-height:1.2; }
+  .nav { display:flex !important; width:100%; overflow-x:auto; overflow-y:hidden; gap:5px; padding:2px 0 5px; scrollbar-width:thin; }
+  .nav button { flex:0 0 auto; width:auto !important; min-width:max-content; padding:9px 10px !important; border-radius:9px; font-size:.72rem !important; }
+  .nav button .ico { width:auto !important; font-size:1rem !important; }
+  .enrol { width:100%; margin:0 !important; }
+  .enrol-head { padding:7px 9px; font-size:.72rem; }
+  .enrol table { font-size:.68rem !important; }
+  .enrol th,.enrol td { padding:5px 4px !important; }
+  main { width:100%; padding:8px !important; }
+  .topbar { display:flex; flex-direction:column; align-items:stretch; gap:8px; }
+  .school-title h1 { font-size:1.05rem !important; line-height:1.2; }
+  .tagline { font-size:.62rem !important; letter-spacing:2px !important; }
+  .tools { display:flex; justify-content:flex-start; flex-wrap:wrap; gap:5px; }
+  .toolgroup { padding:3px; }
+  .toolgroup button,.iconbtn { padding:7px 9px !important; font-size:.72rem !important; }
+  .search { flex:1 1 105px; width:auto !important; min-width:90px; padding:8px 10px; }
+  .hero { display:flex !important; flex-direction:column; gap:0; }
+  .hero-copy { padding:16px 14px !important; }
+  .welcome { font-size:1.25rem !important; }
+  .hero-copy h2 { font-size:clamp(2rem,9vw,2.8rem) !important; line-height:.98; }
+  .hero-copy .motto { font-size:.65rem !important; letter-spacing:1px !important; }
+  .hero-photo { min-height:170px !important; height:170px; }
+  .hero-photo img { min-height:170px !important; height:170px; max-height:none !important; object-fit:cover; }
+  .clockcard { position:absolute !important; top:8px !important; right:8px !important; width:min(250px,78%) !important; padding:9px !important; margin:0 !important; }
+  .clock { width:62px !important; height:62px !important; border-width:3px; }
+  .clock-hand.hour { height:23%; }.clock-hand.minute { height:34%; }.clock-hand.second { height:38%; }
+  .clockrow { gap:8px !important; }
+  .datebox strong { font-size:.78rem; }
+  .datebox .daynum { font-size:1.55rem !important; }
+  .digital { font-size:.72rem !important; padding:5px 6px; }
+  .weather { font-size:.62rem; margin-top:6px; padding-top:5px; }
+  .hijri-date { font-size:.58rem !important; white-space:normal; }
+  .ticker { min-height:36px; margin:8px 0; border-radius:9px; }
+  .ticker-icon { padding:0 9px; font-size:1rem; }
+  .ticker-text { font-size:.72rem !important; gap:1.5rem !important; }
+  .countdowns { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:6px; }
+  .count-card { padding:8px !important; gap:6px; border-radius:10px; }
+  .count-icon { font-size:1.15rem; }
+  .count-card small { font-size:.58rem; }
+  .count-card strong { font-size:.72rem !important; }
+  .count-number { font-size:1.15rem !important; }
+  .main-grid { grid-template-columns:minmax(0,1fr) !important; gap:8px; }
+  .main-grid > .panel:last-child { grid-column:auto; }
+  .panel { padding:10px !important; border-radius:13px; }
+  .panel-head { gap:7px; }
+  .panel-head h3 { font-size:.9rem !important; }
+  .panel-icon { padding:7px; font-size:1rem; }
+  .pill { padding:6px 8px; font-size:.62rem; }
+  .item { grid-template-columns:40px minmax(0,1fr) 12px !important; gap:7px !important; padding:8px 0 !important; }
+  .datebadge strong { font-size:1rem; }
+  .datebadge span { font-size:.62rem; }
+  .item h4 { font-size:.76rem !important; }
+  .item p { font-size:.68rem !important; }
+  .count-grid-inner { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:6px; }
+  .dashboard-bottom-layout { grid-template-columns:minmax(0,1fr) !important; gap:8px; }
+  .dashboard-bottom-left .bottom-grid { grid-template-columns:minmax(0,1fr) !important; gap:7px; }
+  .dashboard-bottom-left .prayer { grid-template-columns:repeat(3,minmax(0,1fr)) !important; padding:8px; gap:4px; }
+  .dashboard-bottom-left .prayer-intro { grid-column:span 3 !important; }
+  .prayer-intro span { font-size:.68rem !important; }
+  .prayertime { padding:7px 2px; font-size:.62rem; }
+  .prayertime b { font-size:.78rem; }
+  .quote { padding:12px !important; }
+  .quote strong { font-size:1rem !important; }
+  .quote p { font-size:.75rem !important; }
+  .dashboard-bottom-left .statsrow { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:6px; }
+  .dashboard-bottom-left .stat:first-child { grid-column:span 2 !important; }
+  .stat { padding:9px !important; gap:6px; }
+  .stat .sym { font-size:1.15rem; }
+  .stat strong { font-size:1rem !important; }
+  .stat small { font-size:.62rem !important; }
+  .dashboard-bottom-layout > .photo-slider { width:100%; height:210px !important; min-height:210px !important; }
+  .photo-slider .slide figcaption { font-size:.95rem !important; }
+  .social { flex-direction:column; align-items:flex-start; padding:10px; }
+  .social-icons { display:flex; flex-wrap:wrap; gap:9px; }
+  .social-icons a { width:42px !important; height:42px !important; font-size:1.25rem !important; }
+  footer { display:flex; flex-direction:column; gap:5px; font-size:.62rem; overflow-wrap:anywhere; }
+  .class-stats { grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; }
+  .class-stat { padding:8px 4px; }
+  .class-stat strong { font-size:1.2rem; }
+  .modal { padding:14px; }
+}
+
+@media (max-width: 360px) {
+  .hero-copy h2 { font-size:1.85rem !important; }
+  .clockcard { width:82% !important; }
+  .clock { width:52px !important; height:52px !important; }
+  .count-card { flex-direction:column; align-items:flex-start; }
+  .dashboard-bottom-left .prayer { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .dashboard-bottom-left .prayer-intro { grid-column:span 2 !important; }
+  .social-icons a { width:38px !important; height:38px !important; }
+}
+
+
+/* v9 refinements: INTEK requested clock face, current counts, photo and countdown animation */
+.clockcard{
+ background:rgba(255,255,255,.30)!important; /* approximately 70% transparent */
+ -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);
+ border-color:rgba(255,255,255,.72)!important;
+ box-shadow:0 8px 26px rgba(0,34,86,.16)
+}
+body.dark .clockcard{background:rgba(4,24,55,.30)!important;border-color:rgba(255,255,255,.42)!important}
+.clock{background:rgba(255,255,255,.38)!important;overflow:hidden}
+body.dark .clock{background:rgba(4,24,55,.38)!important}
+.clock-label{position:absolute;z-index:2;font-weight:950;font-size:clamp(9px,1vw,12px);line-height:1;color:var(--navy);transform:translate(-50%,-50%);pointer-events:none}
+body.dark .clock-label{color:#fff}
+.clock-label.n12{left:50%;top:12%}
+.clock-label.n3{left:88%;top:50%}
+.clock-label.n6{left:50%;top:88%}
+.clock-label.n9{left:12%;top:50%}
+.clock-dot{position:absolute;z-index:2;width:3.5px;height:3.5px;border-radius:50%;background:var(--navy);left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+body.dark .clock-dot{background:#fff}
+.clock-dot.d1{left:69%;top:17%}
+.clock-dot.d2{left:83%;top:31%}
+.clock-dot.d4{left:83%;top:69%}
+.clock-dot.d5{left:69%;top:83%}
+.clock-dot.d7{left:31%;top:83%}
+.clock-dot.d8{left:17%;top:69%}
+.clock-dot.d10{left:17%;top:31%}
+.clock-dot.d11{left:31%;top:17%}
+.enrol-updated{padding:5px 9px 6px;font-size:.68rem;line-height:1.25;color:#244b7c;background:#f2f7ff;border-top:1px solid #d7e7ff}
+.enrol-updated strong{font-weight:950}
+body.dark .enrol-updated{background:#122d50;color:#dbeaff;border-color:#29496f}
+.photo-slider{height:clamp(260px,22vw,390px)!important;min-height:260px!important}
+.dashboard-bottom-layout>.photo-slider{min-height:clamp(260px,22vw,390px)!important}
+.slide img{object-position:center center}
+.social-icons a{width:66px!important;height:66px!important;font-size:2.25rem!important}
+.social-icons{gap:13px!important}
+.dashboard-bottom-left .social-icons a{width:52px!important;height:52px!important;font-size:1.8rem!important}
+.count-card{position:relative;overflow:hidden;transform:translateZ(0);transition:box-shadow .25s,border-color .25s,transform .25s}
+.count-card.is-active{animation:countdownPulse 2.8s ease-in-out infinite;border-color:#8ec7ff}
+.count-card.is-active .count-number{animation:numberGlow 2.8s ease-in-out infinite}
+.count-card.is-complete{border-color:#f0b928;background:linear-gradient(135deg,#fff8d8,var(--surface));animation:completedGlow 1.6s ease-in-out infinite}
+.count-card.is-complete .count-number{color:#a66a00!important;font-size:1.12rem!important;font-weight:1000;animation:arrivedBounce 1.2s ease-in-out infinite}
+.count-card.is-complete .count-icon{animation:arrivedBounce 1.2s ease-in-out infinite}
+.count-card.is-complete:after{content:"✦  ✧  ✦";position:absolute;right:8px;top:4px;color:#d69b00;font-size:.8rem;letter-spacing:3px;animation:sparkle 1.5s ease-in-out infinite;pointer-events:none}
+@keyframes countdownPulse{0%,100%{box-shadow:0 3px 10px rgba(20,110,220,.08);transform:scale(1)}50%{box-shadow:0 6px 18px rgba(20,110,220,.2);transform:scale(1.012)}}
+@keyframes numberGlow{0%,100%{text-shadow:0 0 0 transparent}50%{text-shadow:0 0 12px rgba(0,126,255,.28)}}
+@keyframes completedGlow{0%,100%{box-shadow:0 3px 12px rgba(240,185,40,.18)}50%{box-shadow:0 6px 22px rgba(240,185,40,.48)}}
+@keyframes arrivedBounce{0%,100%{transform:translateY(0)}45%{transform:translateY(-3px)}}
+@keyframes sparkle{0%,100%{opacity:.3;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
+@media(prefers-reduced-motion:reduce){.count-card,.count-card.is-active,.count-card.is-complete,.count-card .count-number,.count-card .count-icon,.count-card:after{animation:none!important;transition:none!important}}
+@media(max-width:850px){
+ .photo-slider{height:260px!important;min-height:260px!important}
+ .dashboard-bottom-layout>.photo-slider{min-height:260px!important}
+ .social-icons a,.dashboard-bottom-left .social-icons a{width:46px!important;height:46px!important;font-size:1.7rem!important}
+}
+
+
+/* v10: Sidebar kembali kepada kira-kira 1/6 lebar paparan desktop. */
+@media (min-width: 1100px) {
+  .layout { grid-template-columns: 16.6667vw minmax(0, 1fr) !important; }
+  .sidebar { min-width: 0; }
+}
+
 </style>
 </head>
 <body>
@@ -311,7 +531,7 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
     <button data-section="kokurikulum"><span class="ico">⚑</span> KOKURIKULUM</button>
     <button data-section="pibg"><span class="ico">♧</span> PIBG</button>
     <button data-section="alumni"><span class="ico">♟</span> ALUMNI</button>
-    <button data-section="kgasin"><span class="ico">▥</span> KGSIN</button>
+    <button data-section="kgasin"><span class="ico">▥</span> K-GASIN</button>
     <button data-section="pautan"><span class="ico">↗</span> PAUTAN PENTING</button>
     <button data-section="galeri"><span class="ico">▧</span> GALERI INTEK</button>
     <button data-section="tetapan"><span class="ico">⚙</span> TETAPAN</button>
@@ -323,6 +543,7 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
       <tbody id="enrolBody"></tbody>
       <tfoot><tr><td>JUMLAH</td><td id="totalB">506</td><td id="totalG">502</td><td id="totalAll">1,008</td></tr></tfoot>
     </table>
+    <div class="enrol-updated">Tarikh kemas kini: <strong>19 Oktober 2026</strong></div>
     <button id="openClass">KLIK KELAS UNTUK LIHAT BILANGAN ↗</button>
   </section>
 </aside>
@@ -346,7 +567,11 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
     <div class="hero-photo">
       <img src="assets/intek-campus.jpg" alt="Bangunan utama Sekolah Berasrama Penuh Integrasi Kuantan">
       <div class="clockcard">
-        <div class="clockrow"><div class="clock" aria-label="Jam analog"><span class="clock-hand hour" id="hourHand"></span><span class="clock-hand minute" id="minuteHand"></span><span class="clock-hand second" id="secondHand"></span><span class="clock-center"></span></div><div class="datebox"><strong id="dayName">—</strong><div class="daynum" id="dayNumber">—</div><div id="monthYear">—</div><div class="digital" id="digitalClock">00:00:00</div><div class="hijri-date" id="hijriDate">Tarikh Hijrah sedang dimuatkan…</div></div></div>
+        <div class="clockrow"><div class="clock" aria-label="Jam analog dengan angka 12, 3, 6 dan 9">
+<span class="clock-label n12">12</span><span class="clock-label n3">3</span><span class="clock-label n6">6</span><span class="clock-label n9">9</span>
+<span class="clock-dot d1"></span><span class="clock-dot d2"></span><span class="clock-dot d4"></span><span class="clock-dot d5"></span>
+<span class="clock-dot d7"></span><span class="clock-dot d8"></span><span class="clock-dot d10"></span><span class="clock-dot d11"></span>
+<span class="clock-hand hour" id="hourHand"></span><span class="clock-hand minute" id="minuteHand"></span><span class="clock-hand second" id="secondHand"></span><span class="clock-center"></span></div><div class="datebox"><strong id="dayName">—</strong><div class="daynum" id="dayNumber">—</div><div id="monthYear">—</div><div class="digital" id="digitalClock">00:00:00</div><div class="hijri-date" id="hijriDate">Tarikh Hijrah sedang dimuatkan…</div></div></div>
         <div class="weather"><span>📍 KUANTAN, PAHANG</span><span>☀️ 28°C · CERAH</span></div>
       </div>
     </div>
@@ -372,10 +597,10 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
     <article class="panel countdown-panel" id="countdownPanel">
       <div class="panel-head"><span class="panel-icon">🗓️</span><h3>COUNTDOWN ACARA PENTING</h3></div>
       <div class="count-grid-inner">
-<article class="count-card"><div class="count-icon">🎓</div><div><small>SPM 2026 · 06 NOV 2026</small><strong>SPM 2026</strong><span class="count-number" id="cd-spm">—</span><small>HARI LAGI</small></div></article>
-<article class="count-card"><div class="count-icon">📋</div><div><small>UASA/PDA T4 · 26 OKT 2026</small><strong>UASA/PDA T4</strong><span class="count-number" id="cd-uasa">—</span><small>HARI LAGI</small></div></article>
-<article class="count-card"><div class="count-icon">🏫</div><div><small>BUKA SESI · 04 JAN 2027</small><strong>BUKA SESI 2027</strong><span class="count-number" id="cd-sesi">—</span><small>HARI LAGI</small></div></article>
-<article class="count-card"><div class="count-icon">📝</div><div><small>MTG3 2027 · 10 OKT 2027</small><strong>MTG3 2027</strong><span class="count-number" id="cd-mtg3">—</span><small>HARI LAGI</small></div></article>
+<article class="count-card"><div class="count-icon">🎓</div><div><small>SPM 2026 · 06 NOV 2026</small><strong>SPM 2026</strong><span class="count-number" id="cd-spm">—</span><small class="count-status">HARI LAGI</small></div></article>
+<article class="count-card"><div class="count-icon">📋</div><div><small>UASA/PDA T4 · 26 OKT 2026</small><strong>UASA/PDA T4</strong><span class="count-number" id="cd-uasa">—</span><small class="count-status">HARI LAGI</small></div></article>
+<article class="count-card"><div class="count-icon">🏫</div><div><small>BUKA SESI · 04 JAN 2027</small><strong>BUKA SESI 2027</strong><span class="count-number" id="cd-sesi">—</span><small class="count-status">HARI LAGI</small></div></article>
+<article class="count-card"><div class="count-icon">📝</div><div><small>MTG3 2027 · 10 OKT 2027</small><strong>MTG3 2027</strong><span class="count-number" id="cd-mtg3">—</span><small class="count-status">HARI LAGI</small></div></article>
       </div>
     </article>
   </section>
@@ -390,11 +615,11 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
         <div class="quote"><strong>✦ MUTIARA ISLAM</strong><p>“Dan katakanlah: Tuhanku, tambahkanlah aku ilmu pengetahuan.”</p><small>(Surah Taha, 20:114)</small></div>
       </section>
       <section class="statsrow">
-        <div class="stat"><span class="sym">▥</span><div><strong>STATISTIK RINGKAS INTEK 2027</strong><small>Data contoh · perlu disahkan</small></div></div>
+        <div class="stat"><span class="sym">▥</span><div><strong>STATISTIK RINGKAS INTEK 2027</strong><small>Enrolmen dikemas kini: 20 Oktober 2026</small></div></div>
         <div class="stat"><span class="sym">👥</span><div><strong>20</strong><small>KELAS</small></div></div>
         <div class="stat"><span class="sym">🧑‍🎓</span><div><strong id="statStudents">1,008</strong><small>MURID</small></div></div>
-        <div class="stat"><span class="sym">👩‍🏫</span><div><strong>95</strong><small>GURU*</small></div></div>
-        <div class="stat"><span class="sym">📚</span><div><strong>9</strong><small>PANITIA*</small></div></div>
+        <div class="stat"><span class="sym">👩‍🏫</span><div><strong>56</strong><small>GURU</small></div></div>
+        <div class="stat"><span class="sym">📚</span><div><strong>21</strong><small>PANITIA</small></div></div>
       </section>
       <section class="social"><strong>MEDIA SOSIAL INTEK</strong><div class="social-icons"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="TikTok">♪</a><a href="#" aria-label="Telegram">➤</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a></div></section>
     </div>
@@ -424,11 +649,11 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
 <script>
 /* DATA CONTOH: gantikan dengan data rasmi yang telah diluluskan. */
 const enrolment = [
- {form:"T1",boys:94,girls:103,classes:[["1AKT",24,28],["1ANT",23,26],["1ASN",24,25],["1ARK",23,24]]},
- {form:"T2",boys:106,girls:98,classes:[["2AKT",27,24],["2ANT",27,25],["2ASN",26,24],["2ARK",26,25]]},
- {form:"T3",boys:98,girls:101,classes:[["3AKT",25,26],["3ANT",25,25],["3ASN",24,25],["3ARK",24,25]]},
- {form:"T4",boys:110,girls:105,classes:[["4AKT",28,27],["4ANT",27,26],["4ASN",28,26],["4ARK",27,26]]},
- {form:"T5",boys:98,girls:95,classes:[["5AKT",25,24],["5ANT",25,24],["5ASN",24,24],["5ARK",24,23]]}
+ {form:"T1",boys:60,girls:60,classes:[["1AKT",15,15],["1ANT",15,15],["1ARK",16,14],["1ASN",14,16]]},
+ {form:"T2",boys:57,girls:59,classes:[["2AKT",12,17],["2ANT",16,14],["2ARK",14,14],["2ASN",15,14]]},
+ {form:"T3",boys:55,girls:58,classes:[["3AKT",14,13],["3ANT",14,14],["3ARK",14,16],["3ASN",13,15]]},
+ {form:"T4",boys:57,girls:56,classes:[["4AB",13,14],["4AF",15,15],["4IK",14,13],["4IS",15,14]]},
+ {form:"T5",boys:61,girls:61,classes:[["5AB",16,15],["5AF",16,17],["5IK",16,13],["5IS",13,16]]}
 ];
 const $=s=>document.querySelector(s);
 const enrolBody=$("#enrolBody");
@@ -475,7 +700,24 @@ function updateClock(){
   catch (err) { $("#hijriDate").textContent = "Tarikh Hijrah tidak disokong pelayar"; }
  }
 }
-function countdown(id,date){const target=new Date(date+"T00:00:00+08:00");const today=new Date();const localToday=new Date(today.toLocaleString("en-US",{timeZone:"Asia/Kuala_Lumpur"}));localToday.setHours(0,0,0,0);const n=Math.ceil((target-localToday)/86400000);$(id).textContent=n<0?"TAMAT":n===0?"HARI INI":String(n).padStart(3,"0");}
+function countdown(id,date){
+ const target=new Date(date+"T00:00:00+08:00");
+ const now=new Date();
+ const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kuala_Lumpur",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(now).reduce((o,p)=>(o[p.type]=p.value,o),{});
+ const localToday=new Date(`${parts.year}-${parts.month}-${parts.day}T00:00:00+08:00`);
+ const n=Math.round((target-localToday)/86400000);
+ const el=$(id), card=el?.closest(".count-card");
+ if(!el)return;
+ if(card){
+   card.classList.toggle("is-complete",n<=0);
+   card.classList.toggle("is-active",n>0);
+   const label=card.querySelector(".count-status");
+   if(label) label.textContent=n<0?"SELESAI":n===0?"HARI INI":"HARI LAGI";
+   const icon=card.querySelector(".count-icon");
+   if(icon) icon.setAttribute("aria-label",n<0?"Acara telah selesai":n===0?"Acara berlangsung hari ini":"Acara akan datang");
+ }
+ el.textContent=n<0?"SELESAI":n===0?"HARI INI":String(n).padStart(3,"0");
+}
 function updateCountdowns(){countdown("#cd-spm","2026-11-06");countdown("#cd-uasa","2026-10-26");countdown("#cd-sesi","2027-01-04");countdown("#cd-mtg3","2027-10-10")}
 updateClock();updateCountdowns();setInterval(updateClock,1000);setInterval(updateCountdowns,60000);
 function setTheme(dark){document.body.classList.toggle("dark",dark);$("#themeLight").setAttribute("aria-pressed",String(!dark));$("#themeDark").setAttribute("aria-pressed",String(dark));try{localStorage.setItem("intek-theme",dark?"dark":"light")}catch(e){}}
