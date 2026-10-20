@@ -42,10 +42,9 @@ body.dark .hero-copy h2{color:#eaf3ff}.hero-copy h2 span{color:#d99a00}.hero-cop
 .hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--surface) 0%,#ffffff00 42%,#0b3b7920 100%);pointer-events:none}
 .clockcard{position:absolute;right:14px;top:14px;z-index:2;background:color-mix(in srgb,var(--surface) 93%,transparent);border:1px solid var(--line);border-radius:15px;padding:12px;width:230px;box-shadow:var(--shadow)}
 .clockrow{display:flex;gap:12px;align-items:center}.clock{width:84px;height:84px;border:4px solid var(--navy);border-radius:50%;position:relative;background:var(--surface);flex-shrink:0;box-shadow:inset 0 0 0 2px #d8e9ff}
-.clock:before{content:"";position:absolute;left:calc(50% - 2px);top:12px;width:4px;height:30px;background:var(--navy);border-radius:5px;transform-origin:bottom;animation:hour 60s linear infinite}
-.clock:after{content:"";position:absolute;left:calc(50% - 1px);top:7px;width:2px;height:35px;background:#e53b42;border-radius:5px;transform-origin:bottom;animation:minute 5s linear infinite}
-.clock-center{position:absolute;left:calc(50% - 4px);top:calc(50% - 4px);width:8px;height:8px;background:var(--gold);border-radius:50%;z-index:1}
-@keyframes hour{to{transform:rotate(360deg)}}@keyframes minute{to{transform:rotate(360deg)}}
+.clock-hand{position:absolute;left:50%;bottom:50%;border-radius:8px;transform-origin:50% 100%;transform:translateX(-50%) rotate(0deg);z-index:1;pointer-events:none}
+.clock-hand.hour{width:4px;height:25%;background:var(--navy)}.clock-hand.minute{width:3px;height:36%;background:var(--navy)}.clock-hand.second{width:2px;height:40%;background:#e53b42}
+.clock-center{position:absolute;left:calc(50% - 5px);top:calc(50% - 5px);width:10px;height:10px;background:var(--gold);border:1px solid white;border-radius:50%;z-index:2}
 .datebox strong{font-size:.95rem}.datebox .daynum{font-size:2rem;line-height:1.05}.digital{background:var(--navy);color:white;padding:7px 9px;border-radius:8px;margin-top:6px;text-align:center;font-size:.9rem;white-space:nowrap}
 .weather{margin-top:10px;display:flex;justify-content:space-between;gap:6px;font-size:.75rem;border-top:1px solid var(--line);padding-top:8px}
 .ticker{margin:10px 0;background:linear-gradient(90deg,#06275c,#006de0);border:1px solid #59b6ff;color:#fff;border-radius:12px;display:flex;align-items:center;overflow:hidden;min-height:39px}
@@ -69,7 +68,7 @@ body.dark .hero-copy h2{color:#eaf3ff}.hero-copy h2 span{color:#d99a00}.hero-cop
 .statsrow{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:7px;margin-top:10px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px;display:flex;align-items:center;gap:9px;box-shadow:var(--shadow);min-width:0}.stat:first-child{background:#073779;color:white}.stat .sym{font-size:1.4rem;color:#1491ff}.stat strong{font-size:1.15rem;display:block}.stat small{font-size:.7rem;color:var(--muted)}.stat:first-child small{color:#d5e5ff}
 .social{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;padding:11px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
-.social-icons{display:flex;gap:8px}.social-icons a{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#e6f2ff;color:#073779;font-weight:900}
+.social-icons{display:flex;gap:12px;align-items:center}.social-icons a{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#e6f2ff;color:#073779;font-weight:950;font-size:1.45rem;box-shadow:0 3px 10px #0b4a8b18;transition:transform .18s,background .18s,color .18s}.social-icons a:hover,.social-icons a:focus-visible{transform:translateY(-3px) scale(1.06);background:var(--gold);color:#09285c;outline:none}.hijri-date{font-size:.68rem;font-weight:850;color:var(--muted);margin-top:4px;line-height:1.2;white-space:nowrap}
 footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;font-size:.68rem;color:var(--muted)}
 .notice{display:none;position:fixed;right:16px;bottom:16px;background:var(--navy);color:white;padding:12px 16px;border-radius:12px;box-shadow:var(--shadow);z-index:10}.notice.show{display:block}
 .modal-backdrop{display:none;position:fixed;inset:0;background:#06162dcc;z-index:20;align-items:center;justify-content:center;padding:18px}.modal-backdrop.open{display:flex}.modal{background:var(--surface);color:var(--ink);width:min(520px,100%);border-radius:18px;padding:20px;box-shadow:0 20px 60px #0005}.modal-top{display:flex;justify-content:space-between;align-items:center}.modal h3{margin:0}.close{border:0;background:transparent;color:var(--ink);font-size:1.4rem}.class-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}.class-stat{background:var(--page);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}.class-stat strong{font-size:1.6rem;display:block}.class-picker{display:flex;gap:8px;flex-wrap:wrap}.class-picker button{border:1px solid var(--line);border-radius:9px;padding:8px 12px;background:var(--surface);color:var(--ink)}.class-picker button:hover{background:var(--gold);color:#102b60}
@@ -131,9 +130,9 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
 .clock{width:104px;height:104px}
 .datebox .daynum{font-size:2.3rem}
 .ticker{min-height:42px}
-.ticker-text{display:flex;flex:0 0 auto;width:max-content;gap:2.5rem;padding-left:0;animation:marquee-intek 34s linear infinite;white-space:nowrap}
+.ticker-text{display:flex;flex:0 0 auto;width:max-content;gap:2.5rem;padding-left:0;animation:marquee-intek 24s linear infinite;white-space:nowrap;will-change:transform}
 .ticker-text span{display:block;flex:0 0 auto}
-@keyframes marquee-intek{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes marquee-intek{from{transform:translateX(0)}to{transform:translateX(-50%)}}\n.ticker-window{display:block;min-width:0}.ticker-text span{white-space:nowrap}.ticker:hover .ticker-text{animation-play-state:paused}
 .main-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(300px,.88fr);gap:10px;align-items:stretch}
 .main-grid>.panel{height:100%}
 .countdown-panel .panel-head h3{font-size:.98rem}
@@ -231,7 +230,7 @@ footer{padding:12px 3px 2px;display:flex;justify-content:space-between;gap:12px;
     <div class="hero-photo">
       <img src="assets/intek-campus.jpg" alt="Bangunan utama Sekolah Berasrama Penuh Integrasi Kuantan">
       <div class="clockcard">
-        <div class="clockrow"><div class="clock" aria-label="Jam analog"><span class="clock-center"></span></div><div class="datebox"><strong id="dayName">—</strong><div class="daynum" id="dayNumber">—</div><div id="monthYear">—</div><div class="digital" id="digitalClock">00:00:00</div></div></div>
+        <div class="clockrow"><div class="clock" aria-label="Jam analog"><span class="clock-hand hour" id="hourHand"></span><span class="clock-hand minute" id="minuteHand"></span><span class="clock-hand second" id="secondHand"></span><span class="clock-center"></span></div><div class="datebox"><strong id="dayName">—</strong><div class="daynum" id="dayNumber">—</div><div id="monthYear">—</div><div class="digital" id="digitalClock">00:00:00</div><div class="hijri-date" id="hijriDate">Tarikh Hijrah sedang dimuatkan…</div></div></div>
         <div class="weather"><span>📍 KUANTAN, PAHANG</span><span>☀️ 28°C · CERAH</span></div>
       </div>
     </div>
@@ -322,7 +321,32 @@ $("#totalB").textContent = totals.b.toLocaleString("en-US");
 $("#totalG").textContent = totals.g.toLocaleString("en-US");
 $("#totalAll").textContent = totalStudents.toLocaleString("en-US");
 $("#statStudents").textContent = totalStudents.toLocaleString("en-US");
-function updateClock(){const now=new Date();$("#dayName").textContent=new Intl.DateTimeFormat("ms-MY",{weekday:"long"}).format(now).toUpperCase();$("#dayNumber").textContent=now.getDate();$("#monthYear").textContent=new Intl.DateTimeFormat("ms-MY",{month:"long",year:"numeric"}).format(now);$("#digitalClock").textContent=new Intl.DateTimeFormat("en-MY",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:true,timeZone:"Asia/Kuala_Lumpur"}).format(now);$("#prayerDate").textContent=new Intl.DateTimeFormat("ms-MY",{dateStyle:"long",timeZone:"Asia/Kuala_Lumpur"}).format(now);}
+function updateClock(){
+ const now = new Date();
+ const tz = "Asia/Kuala_Lumpur";
+ const parts = new Intl.DateTimeFormat("en-GB", {
+  timeZone: tz, hour:"2-digit", minute:"2-digit", second:"2-digit", hourCycle:"h23"
+ }).formatToParts(now).reduce((o,p)=>(o[p.type]=p.value,o),{});
+ const hour = Number(parts.hour), minute = Number(parts.minute), second = Number(parts.second);
+ const hourAngle = ((hour % 12) + minute/60 + second/3600) * 30;
+ const minuteAngle = (minute + second/60) * 6;
+ const secondAngle = second * 6;
+ $("#hourHand").style.transform = `translateX(-50%) rotate(${hourAngle}deg)`;
+ $("#minuteHand").style.transform = `translateX(-50%) rotate(${minuteAngle}deg)`;
+ $("#secondHand").style.transform = `translateX(-50%) rotate(${secondAngle}deg)`;
+ $("#dayName").textContent = new Intl.DateTimeFormat("ms-MY",{weekday:"long",timeZone:tz}).format(now).toUpperCase();
+ $("#dayNumber").textContent = new Intl.DateTimeFormat("en-GB",{day:"2-digit",timeZone:tz}).format(now);
+ $("#monthYear").textContent = new Intl.DateTimeFormat("ms-MY",{month:"long",year:"numeric",timeZone:tz}).format(now);
+ $("#digitalClock").textContent = new Intl.DateTimeFormat("en-MY",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:true,timeZone:tz}).format(now);
+ $("#prayerDate").textContent = new Intl.DateTimeFormat("ms-MY",{dateStyle:"long",timeZone:tz}).format(now);
+ try {
+  const hijri = new Intl.DateTimeFormat("ms-MY-u-ca-islamic-umalqura",{day:"numeric",month:"long",year:"numeric",timeZone:tz}).format(now);
+  $("#hijriDate").textContent = hijri + "H";
+ } catch (e) {
+  try { $("#hijriDate").textContent = new Intl.DateTimeFormat("ms-MY-u-ca-islamic",{day:"numeric",month:"long",year:"numeric",timeZone:tz}).format(now) + "H"; }
+  catch (err) { $("#hijriDate").textContent = "Tarikh Hijrah tidak disokong pelayar"; }
+ }
+}
 function countdown(id,date){const target=new Date(date+"T00:00:00+08:00");const today=new Date();const localToday=new Date(today.toLocaleString("en-US",{timeZone:"Asia/Kuala_Lumpur"}));localToday.setHours(0,0,0,0);const n=Math.ceil((target-localToday)/86400000);$(id).textContent=n<0?"TAMAT":n===0?"HARI INI":String(n).padStart(3,"0");}
 function updateCountdowns(){countdown("#cd-spm","2026-11-06");countdown("#cd-uasa","2026-10-26");countdown("#cd-sesi","2027-01-04");countdown("#cd-mtg3","2027-10-10")}
 updateClock();updateCountdowns();setInterval(updateClock,1000);setInterval(updateCountdowns,60000);
