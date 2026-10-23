@@ -328,7 +328,7 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
   </div>
   <div class="quote"><strong>✦ MUTIARA ISLAM</strong><p>“Dan katakanlah: Tuhanku, tambahkanlah aku ilmu pengetahuan.”</p><small>(Surah Taha, 20:114)</small></div>
 </div></section>
-  <div class="ticker" aria-label="Maklumat bergerak"><div class="ticker-icon">📢</div><div class="ticker-window"><div class="ticker-text"><span>SELAMAT DATANG KE INTEK SMART PORTAL 2027　 •　 #WE ARE THE BEST　 •　 HARI TERBUKA INTEK (HATI) 2027　 •　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　 •　</span><span aria-hidden="true">SELAMAT DATANG KE INTEK SMART PORTAL 2027　 •　 #WE ARE THE BEST　 •　 HARI TERBUKA INTEK (HATI) 2027　 •　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　 •　</span></div></div></div>
+  <div class="ticker" aria-label="Maklumat bergerak"><div class="ticker-icon">📢</div><div class="ticker-window"><div class="ticker-text" id="portalTickerText"><span>SELAMAT DATANG KE INTEK SMART PORTAL 2027　 •　 #WE ARE THE BEST　 •　 HARI TERBUKA INTEK (HATI) 2027　 •　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　 •　</span><span aria-hidden="true">SELAMAT DATANG KE INTEK SMART PORTAL 2027　 •　 #WE ARE THE BEST　 •　 HARI TERBUKA INTEK (HATI) 2027　 •　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　 •　</span></div></div></div>
   <section id="quick"><div class="section-head"><div><div class="tag">SATU PINTU · PELBAGAI URUSAN</div><h3>Akses Pantas</h3><p>Pilih kategori untuk mendapatkan pautan dan sistem rasmi INTEK.</p></div><button class="pill" id="allLinks">Lihat semua ↗</button></div>
     <div class="quick-grid">
       <button class="quick" data-link="DELIMa"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5V20H3z"/><path d="M9 20v-6h6v6M7 10h.01M12 10h.01M17 10h.01"/></svg></span><strong>DELIMa</strong><small>Platform pembelajaran ↗</small></button>
@@ -339,11 +339,11 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
       <button class="quick" data-link="Google Calendar"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M12 14h2M7 17h2M12 17h2"/></svg></span><strong>Kalendar INTEK</strong><small>Agenda sekolah ↗</small></button>
     </div></section>
   <section class="dashboard-grid" id="events">
-    <article class="panel searchable-panel"><div class="panel-head"><span class="panel-icon">📣</span><h3>PENGUMUMAN TERKINI</h3><button class="pill" data-link="Semua Pengumuman">LIHAT SEMUA →</button></div>
-      <div class="item searchable"><div class="datebadge"><strong>20</strong><span>OKT</span></div><div><h4><span class="important badge-penting">PENTING</span> TAKLIMAT AGIHAN WAKTU MENGAJAR 2027</h4><p>Bilik Mesyuarat Utama · 10.00 pagi</p></div><span class="arrow">›</span></div>
-      <div class="item searchable"><div class="datebadge"><strong>23</strong><span>OKT</span></div><div><h4>PENDAFTARAN HARI TERBUKA INTEK 2027</h4><p>Permohonan penyertaan pempamer dibuka</p></div><span class="arrow">›</span></div>
-      <div class="item searchable"><div class="datebadge"><strong>18</strong><span>OKT</span></div><div><h4>PENYELENGGARAAN SISTEM DELIMa</h4><p>Akses mungkin terganggu pada waktu penyelenggaraan</p></div><span class="arrow">›</span></div>
-      <div class="item searchable"><div class="datebadge"><strong>20</strong><span>OKT</span></div><div><h4>MAKLUMAN CUTI PERISTIWA</h4><p>Semak pengumuman rasmi pihak sekolah</p></div><span class="arrow">›</span></div>
+    <article class="panel searchable-panel" id="announcementsPanel"><div class="panel-head"><span class="panel-icon">📣</span><h3>PENGUMUMAN TERKINI</h3><button class="pill" data-link="Semua Pengumuman">LIHAT SEMUA →</button></div>
+      <div class="item searchable" data-static-announcement="1"><div class="datebadge"><strong>20</strong><span>OKT</span></div><div><h4><span class="important badge-penting">PENTING</span> TAKLIMAT AGIHAN WAKTU MENGAJAR 2027</h4><p>Bilik Mesyuarat Utama · 10.00 pagi</p></div><span class="arrow">›</span></div>
+      <div class="item searchable" data-static-announcement="1"><div class="datebadge"><strong>23</strong><span>OKT</span></div><div><h4>PENDAFTARAN HARI TERBUKA INTEK 2027</h4><p>Permohonan penyertaan pempamer dibuka</p></div><span class="arrow">›</span></div>
+      <div class="item searchable" data-static-announcement="1"><div class="datebadge"><strong>18</strong><span>OKT</span></div><div><h4>PENYELENGGARAAN SISTEM DELIMa</h4><p>Akses mungkin terganggu pada waktu penyelenggaraan</p></div><span class="arrow">›</span></div>
+      <div class="item searchable" data-static-announcement="1"><div class="datebadge"><strong>20</strong><span>OKT</span></div><div><h4>MAKLUMAN CUTI PERISTIWA</h4><p>Semak pengumuman rasmi pihak sekolah</p></div><span class="arrow">›</span></div>
     </article>
     <article class="panel searchable-panel"><div class="panel-head"><span class="panel-icon">🗓️</span><h3>PROGRAM AKAN DATANG</h3><button class="pill" data-link="Google Calendar">KALENDAR →</button></div>
       <div class="item searchable"><div class="datebadge"><strong>23</strong><span>OKT</span></div><div><h4>HARI TERBUKA INTEK 2027 (HATI)</h4><p>23–24 Oktober 2027 · Kawasan INTEK</p></div><span class="arrow">›</span></div>
@@ -395,12 +395,84 @@ const enrolment=[{form:'T1',boys:60,girls:60,classes:[['1 AKTUARI (AKT)',15,15],
 $('#enrolBody').innerHTML=enrolment.map(e=>`<tr><td>${e.form}</td><td>${e.boys}</td><td>${e.girls}</td><td>${e.boys+e.girls}</td></tr>`).join('');$('#totalB').textContent=enrolment.reduce((a,e)=>a+e.boys,0);$('#totalG').textContent=enrolment.reduce((a,e)=>a+e.girls,0);$('#totalAll').textContent=enrolment.reduce((a,e)=>a+e.boys+e.girls,0);
 const modal=$('#classModal');function showClass(c){$('#classDetail').innerHTML=`<div class="class-stats"><div class="class-stat"><span>Lelaki</span><strong>${c[1]}</strong></div><div class="class-stat"><span>Perempuan</span><strong>${c[2]}</strong></div><div class="class-stat"><span>Jumlah</span><strong>${c[1]+c[2]}</strong></div></div>`;$('#modalTitle').textContent=c[0]}
 const picker=$('#classPicker');enrolment.forEach(e=>e.classes.forEach(c=>{const b=document.createElement('button');b.textContent=c[0];b.addEventListener('click',()=>showClass(c));picker.appendChild(b)}));$('#openClasses').addEventListener('click',()=>modal.classList.add('open'));$('#closeModal').addEventListener('click',()=>modal.classList.remove('open'));modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+// INTEK Smart Portal — kandungan ticker dan pengumuman daripada Public API.
+// Gunakan URL deployment API yang sama seperti integrasi waktu solat; tambah api=1.
+const PORTAL_CONTENT_API_URL = 'https://script.google.com/a/macros/moe-dl.edu.my/s/AKfycbzjKCUfreFdBAPn4497B0NM-RfB9IeNkJtoKbBZmmIFsLScu956OGWGQWJqu7YrZalO/exec';
+let portalAnnouncements = [];
+function portalDateParts(value){
+  const m = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(!m) return {day:'—', month:''};
+  const date = new Date(Number(m[1]), Number(m[2])-1, Number(m[3]));
+  return {day:m[3], month:new Intl.DateTimeFormat('ms-MY',{month:'short'}).format(date).replace('.','').toUpperCase()};
+}
+function renderPortalAnnouncements(items){
+  const panel = $('#announcementsPanel');
+  if(!panel || !Array.isArray(items)) return;
+  const active = items.filter(x=>x && x.active !== false && String(x.title || '').trim());
+  portalAnnouncements = active;
+  panel.querySelectorAll('.item[data-portal-announcement="1"]').forEach(el=>el.remove());
+  // Remove only the four built-in fallback rows after a valid API response.
+  panel.querySelectorAll('.item[data-static-announcement="1"]').forEach(el=>el.remove());
+  const header = panel.querySelector('.panel-head');
+  active.slice(0,30).forEach(item=>{
+    const date = portalDateParts(item.date);
+    const row = document.createElement('div');
+    row.className = 'item searchable';
+    row.dataset.portalAnnouncement = '1';
+    const badge = document.createElement('div'); badge.className='datebadge';
+    const day = document.createElement('strong'); day.textContent=date.day;
+    const month = document.createElement('span'); month.textContent=date.month;
+    badge.append(day,month);
+    const content = document.createElement('div');
+    const title = document.createElement('h4');
+    if(item.important === true){const important=document.createElement('span');important.className='important badge-penting';important.textContent='PENTING';title.append(important,document.createTextNode(' '));}
+    title.append(document.createTextNode(String(item.title || '')));
+    const desc=document.createElement('p'); desc.textContent=String(item.description || '');
+    content.append(title,desc);
+    const arrow=document.createElement('span'); arrow.className='arrow'; arrow.textContent='›';
+    row.append(badge,content,arrow);
+    panel.append(row);
+  });
+  const count = active.filter(x=>x.important === true).length;
+  const notice = $('#noticeBtn');
+  if(notice){notice.textContent='♟ '+count;notice.setAttribute('aria-label',count+' pengumuman penting');}
+  // Reapply current search filter to newly rendered announcement rows.
+  const q = ($('#search')?.value || '').trim().toLocaleLowerCase('ms');
+  panel.querySelectorAll('.item.searchable').forEach(el=>{el.style.display=el.textContent.toLocaleLowerCase('ms').includes(q)?'':'none';});
+}
+function applyPortalContent(payload){
+  if(!payload || payload.ok !== true || !payload.data) return;
+  const data=payload.data;
+  if(typeof data.tickerText === 'string' && data.tickerText.trim()){
+    const ticker=$('#portalTickerText');
+    if(ticker){
+      ticker.replaceChildren();
+      const first=document.createElement('span'); first.textContent=data.tickerText;
+      const second=document.createElement('span'); second.textContent=data.tickerText; second.setAttribute('aria-hidden','true');
+      ticker.append(first,second);
+    }
+  }
+  if(Array.isArray(data.announcements)) renderPortalAnnouncements(data.announcements);
+}
+function loadPortalContent(){
+  const callback='__intekPortalCallback_'+Date.now()+'_'+Math.floor(Math.random()*100000);
+  let script=null, timer=null, finished=false;
+  const cleanup=()=>{if(finished)return;finished=true;if(script)script.remove();if(timer)clearTimeout(timer);try{delete window[callback];}catch(e){window[callback]=undefined;}};
+  window[callback]=payload=>{cleanup();applyPortalContent(payload);};
+  script=document.createElement('script');
+  script.src=PORTAL_CONTENT_API_URL+'?api=1&callback='+encodeURIComponent(callback)+'&_='+Date.now();
+  script.async=true;
+  script.onerror=()=>cleanup();
+  timer=setTimeout(cleanup,12000);
+  document.head.appendChild(script);
+}
+
 // Theme and accessible font controls.
 $('#lightBtn').addEventListener('click',()=>{document.body.classList.remove('dark');$('#lightBtn').setAttribute('aria-pressed','true');$('#darkBtn').setAttribute('aria-pressed','false')});$('#darkBtn').addEventListener('click',()=>{document.body.classList.add('dark');$('#darkBtn').setAttribute('aria-pressed','true');$('#lightBtn').setAttribute('aria-pressed','false')});let scale=1;function setScale(){document.documentElement.style.setProperty('--scale',scale)}$('#fontDown').addEventListener('click',()=>{scale=Math.max(.85,+(scale-.05).toFixed(2));setScale()});$('#fontUp').addEventListener('click',()=>{scale=Math.min(1.2,+(scale+.05).toFixed(2));setScale()});$('#fontReset').addEventListener('click',()=>{scale=1;setScale()});$('#settingsBtn').addEventListener('click',()=>toast('Gunakan butang LIGHT/DARK dan A− / A / A+ di bahagian atas untuk tetapan paparan.'));
 // Search filters announcements, events and quick links in place.
 $('#search').addEventListener('input',e=>{const q=e.target.value.trim().toLocaleLowerCase('ms');let count=0;$$('.searchable').forEach(el=>{const show=el.textContent.toLocaleLowerCase('ms').includes(q);el.style.display=show?'':'none';if(show&&q)count++});$$('.quick').forEach(el=>{const show=el.textContent.toLocaleLowerCase('ms').includes(q);el.style.display=(!q||show)?'':'none';if(show&&q)count++});$$('.searchable-panel').forEach(panel=>panel.style.opacity=q&&!panel.textContent.toLocaleLowerCase('ms').includes(q)?'.65':'1');if(q&&count===0)toast('Tiada padanan ditemui. Cuba kata kunci lain.')});
 // Placeholder links are deliberately not invented; configure official URLs when provided.
-$$('[data-link]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();toast('Pautan '+el.dataset.link+' belum ditetapkan. Berikan URL rasmi untuk dihubungkan.')}));$('#noticeBtn').addEventListener('click',()=>toast('Pengumuman penting: Taklimat Agihan Waktu Mengajar 2027. Sahkan masa dan lokasi dengan pihak sekolah.'));$('#allLinks').addEventListener('click',()=>toast('Senarai pautan rasmi akan dilengkapkan selepas URL diberikan.'));
+$$('[data-link]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();toast('Pautan '+el.dataset.link+' belum ditetapkan. Berikan URL rasmi untuk dihubungkan.')}));$('#noticeBtn').addEventListener('click',()=>{const important=portalAnnouncements.filter(x=>x.important===true);toast(important.length?'Pengumuman penting: '+important.map(x=>x.title).join(' • '):'Tiada pengumuman penting aktif.');});$('#allLinks').addEventListener('click',()=>toast('Senarai pautan rasmi akan dilengkapkan selepas URL diberikan.'));
 $$('[data-scroll]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.scroll)?.scrollIntoView({behavior:'smooth',block:'start'})));$$('.nav button[data-section]').forEach(b=>b.addEventListener('click',()=>{ $$('.nav button').forEach(n=>n.classList.remove('active'));b.classList.add('active');const target=document.getElementById(b.dataset.section);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});else toast('Bahagian '+b.textContent.trim()+' boleh dipautkan selepas URL rasmi disediakan.')}));
 // Slideshow advances every five seconds.
 let slideIndex=0;const slides=$$('.slide'),dots=$$('.slider-dots button');function setSlide(i){slideIndex=i;slides.forEach((s,j)=>s.classList.toggle('active',j===i));dots.forEach((d,j)=>d.classList.toggle('active',j===i))}dots.forEach((d,i)=>d.addEventListener('click',()=>setSlide(i)));setInterval(()=>setSlide((slideIndex+1)%slides.length),5000);
@@ -503,6 +575,7 @@ function updatePrayerWarnings(){
 
 drawClock();
 updateCountdowns();
+loadPortalContent();
 loadPrayerTimes();
 updatePrayerWarnings();
 setInterval(drawClock,1000);
