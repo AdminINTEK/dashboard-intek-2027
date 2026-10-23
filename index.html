@@ -453,6 +453,7 @@ function applyPortalContent(payload){
     }
   }
   if(Array.isArray(data.announcements)) renderPortalAnnouncements(data.announcements);
+  if(Array.isArray(data.slides)) renderPortalSlides(data.slides);
 }
 function loadPortalContent(){
   const callback='__intekPortalCallback_'+Date.now()+'_'+Math.floor(Math.random()*100000);
@@ -474,8 +475,59 @@ $('#search').addEventListener('input',e=>{const q=e.target.value.trim().toLocale
 // Placeholder links are deliberately not invented; configure official URLs when provided.
 $$('[data-link]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();toast('Pautan '+el.dataset.link+' belum ditetapkan. Berikan URL rasmi untuk dihubungkan.')}));$('#noticeBtn').addEventListener('click',()=>{const important=portalAnnouncements.filter(x=>x.important===true);toast(important.length?'Pengumuman penting: '+important.map(x=>x.title).join(' • '):'Tiada pengumuman penting aktif.');});$('#allLinks').addEventListener('click',()=>toast('Senarai pautan rasmi akan dilengkapkan selepas URL diberikan.'));
 $$('[data-scroll]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.scroll)?.scrollIntoView({behavior:'smooth',block:'start'})));$$('.nav button[data-section]').forEach(b=>b.addEventListener('click',()=>{ $$('.nav button').forEach(n=>n.classList.remove('active'));b.classList.add('active');const target=document.getElementById(b.dataset.section);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});else toast('Bahagian '+b.textContent.trim()+' boleh dipautkan selepas URL rasmi disediakan.')}));
-// Slideshow advances every five seconds.
-let slideIndex=0;const slides=$$('.slide'),dots=$$('.slider-dots button');function setSlide(i){slideIndex=i;slides.forEach((s,j)=>s.classList.toggle('active',j===i));dots.forEach((d,j)=>d.classList.toggle('active',j===i))}dots.forEach((d,i)=>d.addEventListener('click',()=>setSlide(i)));setInterval(()=>setSlide((slideIndex+1)%slides.length),5000);
+// Slider: support data from Admin Panel while retaining static fallback if API fails.
+let slideIndex=0;
+let slideTimer=null;
+function currentSlides(){return $$('#slider .slide')}
+function currentDots(){return $$('#slider .slider-dots button')}
+function setSlide(i){
+  const slides=currentSlides(),dots=currentDots();
+  if(!slides.length)return;
+  slideIndex=((i%slides.length)+slides.length)%slides.length;
+  slides.forEach((s,j)=>s.classList.toggle('active',j===slideIndex));
+  dots.forEach((d,j)=>d.classList.toggle('active',j===slideIndex));
+}
+function startSlideTimer(){
+  if(slideTimer)clearInterval(slideTimer);
+  slideTimer=setInterval(()=>{const slides=currentSlides();if(slides.length>1)setSlide((slideIndex+1)%slides.length);},5000);
+}
+function bindSlideDots(){
+  currentDots().forEach((d,i)=>d.addEventListener('click',()=>setSlide(i)));
+}
+function renderPortalSlides(items){
+  const slider=$('#slider');
+  if(!slider||!Array.isArray(items))return;
+  const active=items.filter(x=>x&&x.active!==false&&String(x.imageUrl||'').trim());
+  // Keep the existing hard-coded gallery if the API contains no usable slides.
+  if(!active.length)return;
+  slider.querySelectorAll('.slide').forEach(el=>el.remove());
+  let dots=slider.querySelector('.slider-dots');
+  if(!dots){dots=document.createElement('div');dots.className='slider-dots';slider.append(dots)}
+  dots.replaceChildren();
+  active.slice(0,12).forEach((item,i)=>{
+    const figure=document.createElement('figure');
+    figure.className='slide'+(i===0?' active':'');
+    const img=document.createElement('img');
+    img.src=String(item.imageUrl).trim();
+    img.alt=String(item.caption||('Foto INTEK '+(i+1)));
+    img.loading=i===0?'eager':'lazy';
+    img.onerror=()=>{figure.style.display='none';if(figure.classList.contains('active')){const next=currentSlides().findIndex(el=>el!==figure&&el.style.display!=='none');if(next>=0)setSlide(next)}};
+    const caption=document.createElement('figcaption');
+    caption.textContent=String(item.caption||'');
+    figure.append(img,caption);
+    slider.insertBefore(figure,dots);
+    const dot=document.createElement('button');
+    dot.type='button';dot.className=i===0?'active':'';
+    dot.setAttribute('aria-label','Foto '+(i+1));
+    dots.append(dot);
+  });
+  slideIndex=0;
+  bindSlideDots();
+  startSlideTimer();
+}
+// Initial static controls remain functional if the Public API is unavailable.
+bindSlideDots();
+startSlideTimer();
 
 // Waktu solat JAKIM untuk zon PHG02 (Kuantan/Pekan/Muadzam Shah).
 // JSONP digunakan kerana portal GitHub Pages berbeza origin daripada Apps Script.
