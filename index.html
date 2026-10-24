@@ -304,6 +304,29 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
 @media(max-width:760px){.visitor-stats-panel{margin:0 0 2px;padding:10px 12px}.visitor-stats-heading{font-size:.68rem}.visitor-stats-panel:not(:focus-within) .visitor-stat-row{padding:5px 0}.visitor-stats-panel .visitor-visits-details{max-width:100%}}
 @media(max-width:420px){.visitor-stats-panel{border-radius:11px}.visitor-stat-row{font-size:.69rem}}
 
+/* FIX: Susun label dan nombor jumlah lawatan pada desktop */
+.visitor-visits-details .visitor-stat-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.visitor-visits-details .visitor-stat-row > span {
+  min-width: 0;
+  overflow-wrap: normal;
+  white-space: normal;
+}
+
+.visitor-visits-details .visitor-stat-row > strong {
+  white-space: nowrap;
+  text-align: right;
+}
+
+@media (max-width: 760px) {
+  .visitor-visits-details .visitor-stat-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
 </style>
 </head>
 <body>
