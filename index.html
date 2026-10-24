@@ -291,6 +291,19 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
 }
 @media(max-width:760px){.quick{min-height:100px;padding:11px}.quick .qicon{width:40px;height:40px;flex-basis:40px}}
 
+
+
+/* INTEK visitor analytics — isolated component; does not alter existing portal API styles */
+.visitor-stats-panel{margin-top:2px;padding:12px 11px;border-radius:14px;background:linear-gradient(150deg,#0b3267,#041a3a);color:#f4f8ff;border:1px solid #ffffff30;box-shadow:0 8px 20px #00142d24;font-size:.72rem;min-width:0}
+.visitor-stats-heading{display:flex;gap:7px;align-items:center;font-weight:950;color:#ffcf38;letter-spacing:.55px;margin-bottom:7px;font-size:.7rem}
+.visitor-stat-row{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:6px;align-items:center;padding:6px 0;border-top:1px solid #ffffff20;line-height:1.25}
+.visitor-stat-row strong{font-size:.82rem;color:#ffe17c;font-variant-numeric:tabular-nums;white-space:nowrap}
+.visitor-dot{font-size:.55rem}.visitor-dot.green{color:#49e2a1}.visitor-dot.gold{color:#ffd44d}.visitor-dot.purple{color:#c5a5ff}.visitor-dot.orange{color:#ffad6a}.visitor-dot.blue{color:#70c8ff}
+.visitor-visits-details{margin-top:6px;border-top:1px solid #ffffff28;padding-top:6px}.visitor-visits-details summary{cursor:pointer;font-weight:850;color:#cce3ff;padding:5px 0;line-height:1.35}.visitor-visits-details summary:focus-visible{outline:2px solid #ffcf38;outline-offset:2px}
+#visitorStatsStatus{display:block;margin-top:8px;color:#cce3ff;font-size:.63rem;line-height:1.4}.visitor-stats-note{display:block;margin-top:5px;color:#9db9dc;font-size:.58rem;line-height:1.35}
+@media(max-width:760px){.visitor-stats-panel{margin:0 0 2px;padding:10px 12px}.visitor-stats-heading{font-size:.68rem}.visitor-stats-panel:not(:focus-within) .visitor-stat-row{padding:5px 0}.visitor-stats-panel .visitor-visits-details{max-width:100%}}
+@media(max-width:420px){.visitor-stats-panel{border-radius:11px}.visitor-stat-row{font-size:.69rem}}
+
 </style>
 </head>
 <body>
@@ -311,7 +324,25 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
     <button data-section="slider"><span class="ico">▧</span><span>Galeri INTEK</span></button>
     <button id="settingsBtn"><span class="ico">⚙</span><span>Tetapan</span></button>
   </nav>
-  <div class="side-bottom"><div class="mini-weather"><strong>✦ INTEK · WE ARE THE I</strong>Ilmu · Akhlak · Kepimpinan<br>Kecemerlangan</div>
+
+  <section class="visitor-stats-panel" id="visitorStatsPanel" aria-label="Statistik pelawat INTEK">
+    <div class="visitor-stats-heading"><span aria-hidden="true">🌐</span><span>STATISTIK PELAWAT</span></div>
+    <div class="visitor-stat-row"><span class="visitor-dot green" aria-hidden="true">●</span><span>Hari ini</span><strong id="visitorsTodayUnique">—</strong></div>
+    <div class="visitor-stat-row"><span class="visitor-dot gold" aria-hidden="true">●</span><span>Semalam</span><strong id="visitorsYesterdayUnique">—</strong></div>
+    <div class="visitor-stat-row"><span class="visitor-dot purple" aria-hidden="true">●</span><span>Bulan ini</span><strong id="visitorsMonthUnique">—</strong></div>
+    <div class="visitor-stat-row"><span class="visitor-dot orange" aria-hidden="true">●</span><span>Bulan lepas</span><strong id="visitorsLastMonthUnique">—</strong></div>
+    <div class="visitor-stat-row"><span class="visitor-dot blue" aria-hidden="true">●</span><span>Keseluruhan</span><strong id="visitorsAllTimeUnique">—</strong></div>
+    <details class="visitor-visits-details"><summary>↗ Jumlah lawatan (paparan halaman)</summary>
+      <div class="visitor-stat-row"><span>Hari ini</span><strong id="visitsTodayTotal">—</strong></div>
+      <div class="visitor-stat-row"><span>Semalam</span><strong id="visitsYesterdayTotal">—</strong></div>
+      <div class="visitor-stat-row"><span>Bulan ini</span><strong id="visitsMonthTotal">—</strong></div>
+      <div class="visitor-stat-row"><span>Bulan lepas</span><strong id="visitsLastMonthTotal">—</strong></div>
+      <div class="visitor-stat-row"><span>Keseluruhan</span><strong id="visitsAllTimeTotal">—</strong></div>
+    </details>
+    <small id="visitorStatsStatus" role="status" aria-live="polite">API statistik belum disambungkan.</small>
+    <small class="visitor-stats-note">Pelawat unik dianggarkan berdasarkan pelayar/peranti.</small>
+  </section>
+  <div class="side-bottom"><div class="mini-weather"><strong>✦ INTEK - We Are The Best</strong>Membentuk . Generasi. Pemimpin.</div>
     <section class="enrol" id="enrolment"><div class="enrol-head"><span>ENROLEN MURID TERKINI</span><span>↗</span></div><table><thead><tr><th>Tingkatan</th><th>Lelaki</th><th>Perempuan</th><th>Jumlah</th></tr></thead><tbody id="enrolBody"></tbody><tfoot><tr><td>JUMLAH</td><td id="totalB">290</td><td id="totalG">294</td><td id="totalAll">584</td></tr></tfoot></table><button id="openClasses">KLIK KELAS UNTUK LIHAT BILANGAN ↗</button><div style="padding:0 9px 8px;font-size:.61rem;color:#637795" id="enrolUpdated">Tarikh kemas kini: 19 Oktober 2026</div></section>
   </div>
 </aside>
@@ -469,7 +500,7 @@ function loadPortalContent(){
 }
 
 // Theme and accessible font controls.
-$('#lightBtn').addEventListener('click',()=>{document.body.classList.remove('dark');$('#lightBtn').setAttribute('aria-pressed','true');$('#darkBtn').setAttribute('aria-pressed','false')});$('#darkBtn').addEventListener('click',()=>{document.body.classList.add('dark');$('#darkBtn').setAttribute('aria-pressed','true');$('#lightBtn').setAttribute('aria-pressed','false')});let scale=1;function setScale(){document.documentElement.style.setProperty('--scale',scale)}$('#fontDown').addEventListener('click',()=>{scale=Math.max(.85,+(scale-.05).toFixed(2));setScale()});$('#fontUp').addEventListener('click',()=>{scale=Math.min(1.2,+(scale+.05).toFixed(2));setScale()});$('#fontReset').addEventListener('click',()=>{scale=1;setScale()});$('#settingsBtn').addEventListener('click',()=>toast('Gunakan butang LIGHT/DARK dan A− / A / A+ di bahagian atas untuk tetapan paparan.'));
+$('#lightBtn').addEventListener('click',()=>{document.body.classList.remove('dark');$('#lightBtn').setAttribute('aria-pressed','true');$('#darkBtn').setAttribute('aria-pressed','false')});$('#darkBtn').addEventListener('click',()=>{document.body.classList.add('dark');$('#darkBtn').setAttribute('aria-pressed','true');$('#lightBtn').setAttribute('aria-pressed','false')});let scale=1;function setScale(){document.documentElement.style.setProperty('--scale',scale)}$('#fontDown').addEventListener('click',()=>{scale=Math.max(.85,+(scale-.05).toFixed(2));setScale()});$('#fontUp').addEventListener('click',()=>{scale=Math.min(1.2,+(scale+.05).toFixed(2));setScale()});$('#fontReset').addEventListener('click',()=>{scale=1;setScale()});$('#settingsBtn').addEventListener('click',()=>{const panel=$('#visitorStatsPanel');if(panel){panel.scrollIntoView({behavior:'smooth',block:'nearest'});panel.setAttribute('tabindex','-1');panel.focus({preventScroll:true});}toast('Statistik pelawat dipaparkan di bawah menu Tetapan. Kawalan tema dan saiz tulisan berada di bahagian atas.');});
 // Search filters announcements, events and quick links in place.
 $('#search').addEventListener('input',e=>{const q=e.target.value.trim().toLocaleLowerCase('ms');let count=0;$$('.searchable').forEach(el=>{const show=el.textContent.toLocaleLowerCase('ms').includes(q);el.style.display=show?'':'none';if(show&&q)count++});$$('.quick').forEach(el=>{const show=el.textContent.toLocaleLowerCase('ms').includes(q);el.style.display=(!q||show)?'':'none';if(show&&q)count++});$$('.searchable-panel').forEach(panel=>panel.style.opacity=q&&!panel.textContent.toLocaleLowerCase('ms').includes(q)?'.65':'1');if(q&&count===0)toast('Tiada padanan ditemui. Cuba kata kunci lain.')});
 // Placeholder links are deliberately not invented; configure official URLs when provided.
@@ -635,5 +666,21 @@ setInterval(updateCountdowns,60000);
 setInterval(updatePrayerWarnings,1000);
 // Refresh berkala untuk menangani perubahan hari dan kemas kini sumber.
 setInterval(loadPrayerTimes,6*60*60*1000);
+</script>
+
+<script>
+// INTEK Visitor Statistics — separate API only. Existing portal content and JAKIM APIs remain untouched.
+// Configure this after the dedicated Visitor Statistics API has been deployed and tested.
+const VISITOR_STATS_API_URL = 'https://script.google.com/a/macros/moe-dl.edu.my/s/AKfycbyCA4BBLVFgUuIzC8UgnsBcAqRsw08oUG77JJs5ASHeKxEZtjtYAeGdNoJ0AsuUJlcy/exec';
+function getOrCreateVisitorId(){
+  const key='intek_portal_visitor_id_v1';
+  try{let id=localStorage.getItem(key);if(!id||!/^[A-Fa-f0-9]{48}$/.test(id)){const bytes=new Uint8Array(24);crypto.getRandomValues(bytes);id=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');localStorage.setItem(key,id)}return id}
+  catch(e){const bytes=new Uint8Array(24);crypto.getRandomValues(bytes);return Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('')}
+}
+function callVisitorStatsApi(params){return new Promise((resolve,reject)=>{if(!(/^https:\/\/script\.google\.com\/(?:macros\/s\/|a\/macros\/[^/]+\/s\/)[^/]+\/exec$/.test(VISITOR_STATS_API_URL))){reject(new Error('API statistik belum dikonfigurasi'));return}const callback='intekVisitorCb_'+Date.now()+'_'+Math.floor(Math.random()*100000);const script=document.createElement('script');let done=false;const timer=setTimeout(()=>cleanup(new Error('Masa menunggu API tamat')),10000);function cleanup(error){if(done)return;done=true;clearTimeout(timer);try{delete window[callback]}catch(e){window[callback]=undefined}script.remove();if(error)reject(error)}window[callback]=data=>{cleanup();resolve(data)};script.onerror=()=>cleanup(new Error('API statistik tidak dapat dicapai'));const query=new URLSearchParams({visitor:'1',callback,...params,_:String(Date.now())});script.src=VISITOR_STATS_API_URL+'?'+query.toString();document.head.appendChild(script)})}
+function fmtVisitorNumber(value){return (Number(value)||0).toLocaleString('ms-MY')}
+function renderVisitorStats(stats){if(!stats||!stats.ok)throw new Error('Respons statistik tidak sah');const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=fmtVisitorNumber(v)};set('visitorsTodayUnique',stats.today?.uniqueVisitors);set('visitorsYesterdayUnique',stats.yesterday?.uniqueVisitors);set('visitorsMonthUnique',stats.thisMonth?.uniqueVisitors);set('visitorsLastMonthUnique',stats.lastMonth?.uniqueVisitors);set('visitorsAllTimeUnique',stats.allTime?.uniqueVisitors);set('visitsTodayTotal',stats.today?.visits);set('visitsYesterdayTotal',stats.yesterday?.visits);set('visitsMonthTotal',stats.thisMonth?.visits);set('visitsLastMonthTotal',stats.lastMonth?.visits);set('visitsAllTimeTotal',stats.allTime?.visits);const status=document.getElementById('visitorStatsStatus');if(status)status.textContent='Dikemas kini: '+new Intl.DateTimeFormat('ms-MY',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Kuala_Lumpur'}).format(new Date(stats.updatedAt))}
+async function initVisitorStats(){if(!(/^https:\/\/script\.google\.com\/(?:macros\/s\/|a\/macros\/[^/]+\/s\/)[^/]+\/exec$/.test(VISITOR_STATS_API_URL)))return;try{await callVisitorStatsApi({action:'visit',visitorId:getOrCreateVisitorId()})}catch(e){console.warn('Rekod lawatan gagal:',e.message)}try{renderVisitorStats(await callVisitorStatsApi({action:'stats'}))}catch(e){console.warn('Statistik pelawat tidak tersedia:',e.message);const status=document.getElementById('visitorStatsStatus');if(status)status.textContent='Statistik belum dapat dimuatkan. Semak sambungan API atau akses Web app.'}}
+document.addEventListener('DOMContentLoaded',initVisitorStats);
 </script>
 </body></html>
