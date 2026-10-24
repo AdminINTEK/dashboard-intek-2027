@@ -330,6 +330,8 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
 @media(max-width:760px){.calendar-panel{padding:10px}.calendar-frame-wrap{height:600px}.calendar-toolbar{align-items:flex-start}.calendar-actions{width:100%}.calendar-actions a{flex:1}}
 @media(max-width:420px){.calendar-frame-wrap{height:540px}}
 
+
+.calendar-events-note{font-size:.68rem;line-height:1.45;color:var(--muted);margin:8px 0 0}.calendar-events-empty{padding:12px 0;font-size:.74rem;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -418,11 +420,12 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
       <div class="item searchable" data-static-announcement="1"><div class="datebadge"><strong>18</strong><span>OKT</span></div><div><h4>PENYELENGGARAAN SISTEM DELIMa</h4><p>Akses mungkin terganggu pada waktu penyelenggaraan</p></div><span class="arrow">›</span></div>
       <div class="item searchable" data-static-announcement="1"><div class="datebadge"><strong>20</strong><span>OKT</span></div><div><h4>MAKLUMAN CUTI PERISTIWA</h4><p>Semak pengumuman rasmi pihak sekolah</p></div><span class="arrow">›</span></div>
     </article>
-    <article class="panel searchable-panel"><div class="panel-head"><span class="panel-icon">🗓️</span><h3>PROGRAM AKAN DATANG</h3><button class="pill" data-link="Google Calendar">KALENDAR →</button></div>
-      <div class="item searchable"><div class="datebadge"><strong>23</strong><span>OKT</span></div><div><h4>HARI TERBUKA INTEK 2027 (HATI)</h4><p>23–24 Oktober 2027 · Kawasan INTEK</p></div><span class="arrow">›</span></div>
-      <div class="item searchable"><div class="datebadge"><strong>05</strong><span>NOV</span></div><div><h4>KARNIVAL STEM INTEK 2027</h4><p>5–7 November 2027 · Dewan & Makmal</p></div><span class="arrow">›</span></div>
-      <div class="item searchable"><div class="datebadge"><strong>21</strong><span>NOV</span></div><div><h4>KEJOHANAN OLAHRAGA TAHUNAN INTEK</h4><p>21–22 November 2027 · Padang INTEK</p></div><span class="arrow">›</span></div>
-      <div class="item searchable"><div class="datebadge"><strong>10</strong><span>DIS</span></div><div><h4>MESYUARAT AGUNG PIBG 2027</h4><p>10 Disember 2027 · Dewan INTEK</p></div><span class="arrow">›</span></div>
+    <article class="panel searchable-panel" id="upcomingProgramsPanel">
+      <div class="panel-head"><span class="panel-icon">🗓️</span><h3>PROGRAM AKAN DATANG</h3><button class="pill" data-link="Google Calendar">KALENDAR →</button></div>
+      <div id="calendarEventsList" aria-live="polite">
+        <div class="item"><div class="datebadge"><strong>…</strong><span>---</span></div><div><h4>Memuatkan program…</h4><p>Acara bertanda [PORTAL] akan dipaparkan di sini.</p></div><span class="arrow">›</span></div>
+      </div>
+      <p class="calendar-events-note" id="calendarEventsStatus">Senarai program disegerakkan daripada Google Calendar.</p>
     </article>
     <article class="panel count-panel"><div class="panel-head"><span class="panel-icon">⏳</span><h3>COUNTDOWN ACARA PENTING</h3></div><div class="count-grid">
       <div class="count-card" data-date="2026-11-06T00:00:00+08:00"><div class="cicon">🎓</div><div><small>06 NOV 2026</small><strong>SPM 2026</strong><span class="count-number">—</span><div class="count-status">HARI LAGI</div></div></div>
@@ -782,5 +785,89 @@ function fmtVisitorNumber(value){return (Number(value)||0).toLocaleString('ms-MY
 function renderVisitorStats(stats){if(!stats||!stats.ok)throw new Error('Respons statistik tidak sah');const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=fmtVisitorNumber(v)};set('visitorsTodayUnique',stats.today?.uniqueVisitors);set('visitorsYesterdayUnique',stats.yesterday?.uniqueVisitors);set('visitorsMonthUnique',stats.thisMonth?.uniqueVisitors);set('visitorsLastMonthUnique',stats.lastMonth?.uniqueVisitors);set('visitorsAllTimeUnique',stats.allTime?.uniqueVisitors);set('visitsTodayTotal',stats.today?.visits);set('visitsYesterdayTotal',stats.yesterday?.visits);set('visitsMonthTotal',stats.thisMonth?.visits);set('visitsLastMonthTotal',stats.lastMonth?.visits);set('visitsAllTimeTotal',stats.allTime?.visits);const status=document.getElementById('visitorStatsStatus');if(status)status.textContent='Dikemas kini: '+new Intl.DateTimeFormat('ms-MY',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Kuala_Lumpur'}).format(new Date(stats.updatedAt))}
 async function initVisitorStats(){if(!(/^https:\/\/script\.google\.com\/(?:macros\/s\/|a\/macros\/[^/]+\/s\/)[^/]+\/exec$/.test(VISITOR_STATS_API_URL)))return;try{await callVisitorStatsApi({action:'visit',visitorId:getOrCreateVisitorId()})}catch(e){console.warn('Rekod lawatan gagal:',e.message)}try{renderVisitorStats(await callVisitorStatsApi({action:'stats'}))}catch(e){console.warn('Statistik pelawat tidak tersedia:',e.message);const status=document.getElementById('visitorStatsStatus');if(status)status.textContent='Statistik belum dapat dimuatkan. Semak sambungan API atau akses Web app.'}}
 document.addEventListener('DOMContentLoaded',initVisitorStats);
+</script>
+<script>
+
+// INTEK Smart Portal — program akan datang daripada Google Calendar.
+// Endpoint events=1 ditambah dalam Apps Script sedia ada; hanya acara bertajuk [PORTAL] dipulangkan.
+const PORTAL_EVENTS_API_URL = PORTAL_CONTENT_API_URL + '?events=1';
+function eventDateParts(value){
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return {day:'—',month:'',dateText:''};
+  const day = new Intl.DateTimeFormat('ms-MY',{day:'2-digit',timeZone:'Asia/Kuala_Lumpur'}).format(d);
+  const month = new Intl.DateTimeFormat('ms-MY',{month:'short',timeZone:'Asia/Kuala_Lumpur'}).format(d).replace('.','').toUpperCase();
+  const dateText = new Intl.DateTimeFormat('ms-MY',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kuala_Lumpur'}).format(d);
+  return {day,month,dateText};
+}
+function renderCalendarEvents(events){
+  const list = document.getElementById('calendarEventsList');
+  const status = document.getElementById('calendarEventsStatus');
+  if(!list || !status) return;
+  list.replaceChildren();
+  if(!Array.isArray(events) || !events.length){
+    const empty = document.createElement('div');
+    empty.className = 'calendar-events-empty';
+    empty.textContent = 'Tiada program bertanda [PORTAL] yang akan datang buat masa ini.';
+    list.appendChild(empty);
+    status.textContent = 'Sumber: Google Calendar · Acara bertanda [PORTAL] sahaja.';
+    return;
+  }
+  events.slice(0,5).forEach(ev=>{
+    const date = eventDateParts(ev.start);
+    const row = document.createElement('div');
+    row.className = 'item searchable';
+    const badge = document.createElement('div'); badge.className='datebadge';
+    const day = document.createElement('strong'); day.textContent=date.day;
+    const month = document.createElement('span'); month.textContent=date.month;
+    badge.append(day,month);
+    const body = document.createElement('div');
+    const title = document.createElement('h4'); title.textContent=String(ev.title||'Program INTEK');
+    const details = document.createElement('p');
+    const time = ev.allDay ? 'Sepanjang hari' : (ev.timeText || '');
+    const location = ev.location ? ' · ' + ev.location : '';
+    details.textContent = [date.dateText,time].filter(Boolean).join(' · ')+location;
+    body.append(title,details);
+    const arrow = document.createElement('span'); arrow.className='arrow'; arrow.textContent='›';
+    row.append(badge,body,arrow);
+    if(ev.url){
+      row.tabIndex=0; row.setAttribute('role','link'); row.setAttribute('aria-label','Buka acara '+String(ev.title||''));
+      const openEvent=()=>window.open(ev.url,'_blank','noopener,noreferrer');
+      row.addEventListener('click',openEvent);
+      row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openEvent();}});
+    }
+    list.appendChild(row);
+  });
+  status.textContent = 'Dipaparkan secara automatik daripada Google Calendar · Acara bertanda [PORTAL] sahaja.';
+}
+function loadCalendarEvents(){
+  const list=document.getElementById('calendarEventsList');
+  const status=document.getElementById('calendarEventsStatus');
+  if(!list||!status)return;
+  const callbackName='intekCalendarEventsCallback';
+  window[callbackName]=function(payload){
+    try{
+      if(!payload||payload.ok!==true||!Array.isArray(payload.events)) throw new Error('Respons acara tidak sah');
+      renderCalendarEvents(payload.events);
+    }catch(err){
+      status.textContent='Program belum dapat dimuatkan. Sila cuba semula kemudian atau gunakan pautan Kalendar.';
+      const row=document.createElement('div'); row.className='calendar-events-empty';
+      row.textContent='Data Google Calendar tidak dapat dibaca pada masa ini.';
+      list.replaceChildren(row);
+    }finally{
+      delete window[callbackName];
+    }
+  };
+  const script=document.createElement('script');
+  script.src=PORTAL_EVENTS_API_URL+'&callback='+callbackName+'&_='+Date.now();
+  script.onerror=()=>{
+    status.textContent='Sambungan Google Calendar belum tersedia. Semak deployment Apps Script.';
+    list.innerHTML='<div class="calendar-events-empty">Program akan dipaparkan selepas endpoint acara diaktifkan.</div>';
+    delete window[callbackName];
+    script.remove();
+  };
+  document.head.appendChild(script);
+}
+document.addEventListener('DOMContentLoaded',loadCalendarEvents);
+
 </script>
 </body></html>
