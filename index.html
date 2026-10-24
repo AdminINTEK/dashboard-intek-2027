@@ -304,29 +304,12 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
 @media(max-width:760px){.visitor-stats-panel{margin:0 0 2px;padding:10px 12px}.visitor-stats-heading{font-size:.68rem}.visitor-stats-panel:not(:focus-within) .visitor-stat-row{padding:5px 0}.visitor-stats-panel .visitor-visits-details{max-width:100%}}
 @media(max-width:420px){.visitor-stats-panel{border-radius:11px}.visitor-stat-row{font-size:.69rem}}
 
+
 /* FIX: Susun label dan nombor jumlah lawatan pada desktop */
-.visitor-visits-details .visitor-stat-row {
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 8px;
-}
-
-.visitor-visits-details .visitor-stat-row > span {
-  min-width: 0;
-  overflow-wrap: normal;
-  white-space: normal;
-}
-
-.visitor-visits-details .visitor-stat-row > strong {
-  white-space: nowrap;
-  text-align: right;
-}
-
-@media (max-width: 760px) {
-  .visitor-visits-details .visitor-stat-row {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-}
-
+.visitor-visits-details .visitor-stat-row{grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.visitor-visits-details .visitor-stat-row>span{min-width:0;overflow-wrap:normal;white-space:normal}
+.visitor-visits-details .visitor-stat-row>strong{white-space:nowrap;text-align:right}
+@media(max-width:760px){.visitor-visits-details .visitor-stat-row{grid-template-columns:minmax(0,1fr) auto}}
 </style>
 </head>
 <body>
@@ -342,7 +325,7 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
     <button data-section="events"><span class="ico">⚑</span><span>Kokurikulum</span></button>
     <button data-section="quick"><span class="ico">♧</span><span>PIBG</span></button>
     <button data-section="quick"><span class="ico">♙</span><span>Alumni</span></button>
-    <button data-section="quick"><span class="ico">▥</span><span>K-GASIN</span></button>
+    <button data-section="quick"><span class="ico">▥</span><span>KGSIN</span></button>
     <button data-section="quick"><span class="ico">↗</span><span>Pautan Penting</span></button>
     <button data-section="slider"><span class="ico">▧</span><span>Galeri INTEK</span></button>
     <button id="settingsBtn"><span class="ico">⚙</span><span>Tetapan</span></button>
@@ -385,10 +368,10 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
   <div class="ticker" aria-label="Maklumat bergerak"><div class="ticker-icon">📢</div><div class="ticker-window"><div class="ticker-text" id="portalTickerText"><span>SELAMAT DATANG KE INTEK SMART PORTAL 2027　 •　 #WE ARE THE BEST　 •　 HARI TERBUKA INTEK (HATI) 2027　 •　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　 •　</span><span aria-hidden="true">SELAMAT DATANG KE INTEK SMART PORTAL 2027　 •　 #WE ARE THE BEST　 •　 HARI TERBUKA INTEK (HATI) 2027　 •　 SEMAKAN TARIKH PEPERIKSAAN AKAN DIKEMAS KINI DARI SEMASA KE SEMASA　 •　</span></div></div></div>
   <section id="quick"><div class="section-head"><div><div class="tag">SATU PINTU · PELBAGAI URUSAN</div><h3>Akses Pantas</h3><p>Pilih kategori untuk mendapatkan pautan dan sistem rasmi INTEK.</p></div><button class="pill" id="allLinks">Lihat semua ↗</button></div>
     <div class="quick-grid">
-      <button class="quick" data-link="DELIMa"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5V20H3z"/><path d="M9 20v-6h6v6M7 10h.01M12 10h.01M17 10h.01"/></svg></span><strong>DELIMa</strong><small>Platform pembelajaran ↗</small></button>
+      <button class="quick" data-link="DELIMa 3.0"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5V20H3z"/><path d="M9 20v-6h6v6M7 10h.01M12 10h.01M17 10h.01"/></svg></span><strong>DELIMa 3.0</strong><small>Platform pembelajaran ↗</small></button>
       <button class="quick" data-link="Jadual Waktu"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><strong>Jadual Waktu</strong><small>Guru & kelas ↗</small></button>
       <button class="quick" data-link="Dokumen Rasmi"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v5h4M9 12h7M9 16h7"/></svg></span><strong>Dokumen Rasmi</strong><small>Fail dan rujukan ↗</small></button>
-      <button class="quick" data-link="Tempahan Makmal"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 16h9"/></svg></span><strong>Tempahan Makmal</strong><small>Permohonan ruang ↗</small></button>
+      <button class="quick" data-link="Tempahan Bilik Khas"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M2 21h20M16 10h3a2 2 0 0 1 2 2v9M8 7h4M8 11h4M8 15h4M12 21v-3h2v3"/></svg></span><strong>Tempahan Bilik Khas</strong><small>Permohonan ruang ↗</small></button>
       <button class="quick" data-link="Laporan Kerosakan"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m14 7 3-3 4 4-3 3M4 20l9-9M5 5l4-2 4 4-2 4-4-2z"/><path d="m14 12 6 6-2 2-6-6"/></svg></span><strong>Laporan Kerosakan</strong><small>Aduan fasiliti ↗</small></button>
       <button class="quick" data-link="Google Calendar"><span class="qicon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M12 14h2M7 17h2M12 17h2"/></svg></span><strong>Kalendar INTEK</strong><small>Agenda sekolah ↗</small></button>
     </div></section>
@@ -430,8 +413,8 @@ footer{padding:15px 3px 3px;display:flex;justify-content:space-between;gap:12px;
       <a href="#" data-link="YouTube INTEK" aria-label="YouTube"><svg viewBox="0 0 48 48"><rect x="2" y="8" width="44" height="32" rx="10" fill="#ff0033"/><path d="M20 16.5 33 24 20 31.5z" fill="#fff"/></svg></a>
       <a href="#" data-link="X INTEK" aria-label="X"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#111"/><path fill="#fff" d="M11 10h8.2l7.3 9.8 8.5-9.8h2.7L27.7 22l11 16h-8.2l-8-10.7L13.2 38h-2.7l10.9-12.5zm6.9 2.8h-2.8l17.2 22.4h2.8z"/></svg></a>
     </div></div>
-  </div><section class="slider" id="slider" aria-label="Galeri foto INTEK"><div class="slider-label">GALERI INTEK · KAMPUS & AKTIVITI</div><figure class="slide active"><img src="assets/intek-slide-1.jpg" alt="Bangunan utama INTEK Kuantan"><figcaption>INTEK KUANTAN · MEMBENTUK GENERASI PEMIMPIN</figcaption></figure><figure class="slide"><img src="assets/intek-slide-2.jpg" alt="Suasana dan seni bina sekolah INTEK"><figcaption>ILMU · AKHLAK · KEPIMPINAN · KECEMERLANGAN</figcaption></figure><figure class="slide"><img src="assets/intek-slide-3.jpg" alt="Kampus Sekolah Berasrama Penuh Integrasi Kuantan"><figcaption>INTEK — WE ARE THE I</figcaption></figure><div class="slider-dots"><button class="active" aria-label="Foto 1"></button><button aria-label="Foto 2"></button><button aria-label="Foto 3"></button></div></section></section>
-  <footer><span>📍 SEKOLAH BERASRAMA PENUH INTEGRASI KUANTAN · BANDAR INDERA MAHKOTA, 25200 KUANTAN, PAHANG</span><span>WE ARE THE I · MEMBENTUK GENERASI PEMIMPIN</span></footer>
+  </div><section class="slider" id="slider" aria-label="Galeri foto INTEK"><div class="slider-label">GALERI INTEK · KAMPUS & AKTIVITI</div><figure class="slide active"><img src="assets/intek-slide-1.jpg" alt="Bangunan utama INTEK Kuantan"><figcaption>INTEK KUANTAN · MEMBENTUK GENERASI PEMIMPIN</figcaption></figure><figure class="slide"><img src="assets/intek-slide-2.jpg" alt="Suasana dan seni bina sekolah INTEK"><figcaption>ILMU · AKHLAK · KEPIMPINAN · KECEMERLANGAN</figcaption></figure><figure class="slide"><img src="assets/intek-slide-3.jpg" alt="Kampus Sekolah Berasrama Penuh Integrasi Kuantan"><figcaption>INTEK — WE ARE THE BEST</figcaption></figure><div class="slider-dots"><button class="active" aria-label="Foto 1"></button><button aria-label="Foto 2"></button><button aria-label="Foto 3"></button></div></section></section>
+  <footer><span>📍 SEKOLAH BERASRAMA PENUH INTEGRASI KUANTAN · BANDAR INDERA MAHKOTA, 25200 KUANTAN, PAHANG</span><span>WE ARE THE BEST · MEMBENTUK GENERASI PEMIMPIN</span></footer>
 </main></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="modal-backdrop" id="classModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-top"><h3 id="modalTitle">Enrolmen mengikut kelas</h3><button class="close" id="closeModal" aria-label="Tutup">×</button></div><p style="color:var(--muted);font-size:.82rem">Pilih kelas untuk melihat bilangan murid lelaki, perempuan dan jumlah.</p><div class="class-picker" id="classPicker"></div><div id="classDetail"><p style="color:var(--muted)">Pilih satu kelas di atas.</p></div></div></div>
